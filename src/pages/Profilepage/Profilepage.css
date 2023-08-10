@@ -1,0 +1,42 @@
+.user-container {
+    border:2px solid orange;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+    display: flex;
+    padding: 1em;
+    margin: 1em;
+}
+
+.user-profile-container {
+    /* border: 3px solid purple; */
+    text-align: left;
+}
+.user-profile{
+    height: 60px;
+    border-radius: 50%;
+}
+
+.user-bio {
+    /* border: 3px solid blue; */
+    /* margin-inline: 0.3em; */
+    padding: 1em;
+
+    text-align: left;
+}
+
+.uername {
+    display: flex;
+    flex-direction: column;
+}
+
+.userLink {
+    padding: 1em;
+}
+/* .user-edit {
+    border: 3px solid red;
+} */
+
+.followers {
+    display: flex;
+    justify-content: space-around;
+    margin-block: 1em;
+}
