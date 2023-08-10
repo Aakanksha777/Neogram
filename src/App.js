@@ -11,10 +11,14 @@ import Profilepage from "./pages/Profilepage/Profilepage";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Wrapper from "./components/Wrapper/Wrapper";
+import Topbar from "./components/Topbar/Topbar";
 
 function App() {
   return (
     <div className="App">
+      <div className="topbar-box">
+        <Topbar />
+      </div>
       <Routes>
         {/* checking login for these routes. This logic is written inside Wrapper component*/}
         <Route path="/" element={<Wrapper />}>

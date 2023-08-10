@@ -32,7 +32,7 @@ const Login = () => {
       .then((data) => {
         console.log("login data", data)
         if (data.encodedToken) {
-          localStorage.setItem("user", JSON.stringify({ ...data.foundUser, token: data.encodedToken }))
+          localStorage.setItem("user", JSON.stringify({ ...data.foundUser, token: data.encodedToken })) // waste for now because backend can not store token after refresh
           setUser({ ...data.foundUser, token: data.encodedToken });
           navigate("/home")
         } else {

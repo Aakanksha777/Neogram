@@ -5,24 +5,23 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Topbar = () => {
-
-  const { loggedin, setLoggedin } = useContext(AuthContext);
-
+  const { user, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("logged out")
     localStorage.clear();
-    setLoggedin(!loggedin)
-    navigate('/')
-
+    setUser({})
+    navigate('/login')
   }
 
   return (
     <div className='topbar-container'>
       <h3>neoGram  &#11088;</h3>
-      {loggedin && <button onClick={handleLogout}>Logout</button>}
-      {!loggedin && <Link to='/'>Login</Link>}
+      {user.token ?
+        <button onClick={handleLogout}>Logout</button>
+        :
+        <Link to="/login">Login</Link>
+      }
     </div>
   )
 }
