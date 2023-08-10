@@ -4,15 +4,14 @@ import { PiSortAscendingBold } from "react-icons/pi";
 import "./Homepage.css";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import Allposts from "../../components/Allposts/Allposts";
-// import { authContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
 import { postContext } from "../../context/PostContext";
-import { userContext } from "../../context/UserContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Homepage = () => {
-  // const { user } = useContext(authContext);
-  const { loggedinuser } = useContext(userContext)
+  const { user } = useContext(AuthContext);
   const { allPosts } = useContext(postContext);
-  const [filterArray, setFilterArray ] = useState([]);
+  const [filterArray, setFilterArray] = useState([]);
 
   const handleTrending = () => {
     console.log("trending")
@@ -23,23 +22,23 @@ const Homepage = () => {
 
   const handleLatestPosts = () => {
     console.log("latest post")
-    const latestArray = filterArray.sort((a,b) => b.createdAt - a.createdAt);
+    const latestArray = filterArray.sort((a, b) => b.createdAt - a.createdAt);
     setFilterArray(latestArray);
   }
-  console.log("loggedinuser", loggedinuser);
+  console.log("loggedinuser", user);
 
   useEffect(() => {
-    const userAndFollowings = loggedinuser?.following?.map((person) => person?.username);
-    userAndFollowings?.push(loggedinuser.username); //push username
+    const userAndFollowings = user?.following?.map((person) => person?.username);
+    userAndFollowings?.push(user.username); //push username
     console.log("userAndFollowings", userAndFollowings);
 
     const updateArray = allPosts?.filter((post) =>
-    userAndFollowings?.some((username) => username === post?.username)
-  );
-  console.log("updateArray", updateArray);
+      userAndFollowings?.some((username) => username === post?.username)
+    );
+    console.log("updateArray", updateArray);
     setFilterArray(updateArray)
-  }, [allPosts, loggedinuser]);
-  
+  }, [allPosts, user]);
+
   // userAndFollowings = ["kajal", "rahul", "aakanksha"];
   // ele.username = post.username [kajal || rahul || aakanksha || adarsh_balika]
   // ? check whether exist or not.
