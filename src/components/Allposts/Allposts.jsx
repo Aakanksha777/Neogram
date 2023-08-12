@@ -22,7 +22,7 @@ const Allposts = ({ allPosts }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser({ ...user, bookmarks: [...user.bookmarks, data] })
+        setUser({ ...user, bookmarks: data.bookmarks })
       })
       .catch(e => console.log("Error is ", e))
   }

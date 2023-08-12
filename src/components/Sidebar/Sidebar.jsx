@@ -15,8 +15,9 @@ const Sidebar = () => {
       });
   }, []);
 
-  const handleFollowers = (ele, isUnfollow = false) => {
-    const url = `/api/users/${isUnfollow ? "unfollow" : "follow"}/${ele._id}`;
+  const handleFollowers = (ele) => {
+    debugger
+    const url = `/api/users/${ele.isFollowed ? "unfollow" : "follow"}/${ele._id}`;
     fetch(url, {
       method: "post",
       headers: {
@@ -27,7 +28,7 @@ const Sidebar = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("following", data);
+        console.log("user", data.user)
         setUser(data.user);
       })
       .catch((e) => console.log("Error is ", e));
@@ -68,16 +69,16 @@ const Sidebar = () => {
               @{ele.username}_{ele.lastName}
             </p>
           </div>
-          {!ele.isFollowed ? (
+          {ele.isFollowed ? (
             <div className="user-follow-btn1">
-              <button onClick={() => handleFollowers(ele, ele.isFollowed)}>
-                Follow
+              <button onClick={() => handleFollowers(ele)}>
+                Unfollow
               </button>
             </div>
           ) : (
             <div className="user-follow-btn1">
-              <button onClick={() => handleFollowers(ele, ele.isFollowed)}>
-                Unfollow
+              <button onClick={() => handleFollowers(ele)}>
+                Follow
               </button>
             </div>
           )}

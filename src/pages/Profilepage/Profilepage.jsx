@@ -7,15 +7,6 @@ const Profilepage = () => {
   const { user } = useContext(AuthContext);
   const [editdata, setEditdata] = useState(user.username);
 
-  // useEffect(() => {
-  //   fetch("/api/users/:userId")
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log("user from api", data)
-  //   })
-  //   .catch(e => console.log("Error is ", e))
-  // }, []);
-
   const handleEditUser = () => {
     fetch("/api/users/edit", {
       method: "post",
