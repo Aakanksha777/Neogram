@@ -6,59 +6,49 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 const Explorepage = () => {
-
+  const [bookmark, setBookmarked] = useState([])
   const { allPosts, setAllPosts } = useContext(postContext)
-  const { setBookmarked } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [likes, setLikes] = useState(0)
 
   const handleBookmark = (item) => {
-    const encodedToken = localStorage.getItem("token")
     fetch(`/api/users/bookmark/${item._id}`, {
       method: "post",
       headers: {
         "content-type": "application/json",
-        authorization: encodedToken
+        authorization: user.token
       },
       body: JSON.stringify({})
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("explore data", data)
         setBookmarked(data)
       })
       .catch(e => console.log("Error is ", e))
   }
 
   const handleLike = (item) => {
-    console.log("item", item._id)
-    const encodedToken = localStorage.getItem("token")
     fetch(`/api/posts/like/${item._id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: encodedToken
+        authorization: user.token
       },
       body: JSON.stringify({})
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("like post", data)
         setAllPosts(data.posts)
-        // console.log("likeCount",data.posts.likes.likeCount)
-        // setLikes(data.posts.likes.likeCount)
-
       })
   }
 
   const handleDelete = (item) => {
-    console.log("deleted item")
-    const encodedToken = localStorage.getItem("token");
     fetch(`/api/posts/${item._id}`, {
       method: "delete",
       headers: {
         "content-type": "application/json",
-        authorization: encodedToken
+        authorization: user.token
       }
     })
       .then((res) => res.json())
@@ -80,7 +70,6 @@ const Explorepage = () => {
         handleBookmark={handleBookmark}
         handleLike={handleLike}
         handleDelete={handleDelete}
-
       />
 
       <b>{likes}</b>

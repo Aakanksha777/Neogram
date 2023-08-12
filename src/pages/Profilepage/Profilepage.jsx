@@ -4,7 +4,6 @@ import Wrapper from '../../components/Wrapper/Wrapper';
 import { AuthContext } from '../../context/AuthContext';
 
 const Profilepage = () => {
-
   const { user } = useContext(AuthContext);
   const [editdata, setEditdata] = useState(user.username);
 
@@ -18,13 +17,11 @@ const Profilepage = () => {
   // }, []);
 
   const handleEditUser = () => {
-    const encodedToken = localStorage.getItem("token");
-
     fetch("/api/users/edit", {
       method: "post",
       headers: {
         "content-type": "application/json",
-        authorization: encodedToken
+        authorization: user.token
       },
       body: JSON.stringify({ username: editdata })
     })

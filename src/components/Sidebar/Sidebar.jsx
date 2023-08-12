@@ -15,13 +15,11 @@ const Sidebar = () => {
   const handleFollowers = (ele, isUnfollow = false) => {
     console.log("followed")
     const url = `/api/users/${isUnfollow ? "unfollow" : "follow"}/${ele._id}`
-
-    const encodedToken = localStorage.getItem("token")
     fetch(url, {
       method: "post",
       headers: {
         "content-type": "application/json",
-        authorization: encodedToken
+        authorization: user.token
       },
       body: JSON.stringify({})
     })

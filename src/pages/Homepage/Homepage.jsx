@@ -21,21 +21,17 @@ const Homepage = () => {
   };
 
   const handleLatestPosts = () => {
-    console.log("latest post")
     const latestArray = filterArray.sort((a, b) => b.createdAt - a.createdAt);
     setFilterArray(latestArray);
   }
-  console.log("loggedinuser", user);
 
   useEffect(() => {
     const userAndFollowings = user?.following?.map((person) => person?.username);
     userAndFollowings?.push(user.username); //push username
-    console.log("userAndFollowings", userAndFollowings);
 
     const updateArray = allPosts?.filter((post) =>
       userAndFollowings?.some((username) => username === post?.username)
     );
-    console.log("updateArray", updateArray);
     setFilterArray(updateArray)
   }, [allPosts, user]);
 

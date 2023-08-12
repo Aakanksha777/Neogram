@@ -1,42 +1,37 @@
 import React, { useContext, useState } from 'react'
 import './CreatePost.css';
 import { postContext } from '../../context/PostContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const CreatePost = () => {
-
-  const [createdPost, setCreatedPost ] = useState({
-    content:"", 
-    image:""
+  const [createdPost, setCreatedPost] = useState({
+    content: "",
+    image: ""
   });
-
-  const {  setAllPosts } = useContext(postContext);
-  // console.log(createdPost)
-
-  
+  const { user } = useContext(AuthContext)
+  const { setAllPosts } = useContext(postContext);
 
   const handleCreatePost = () => {
-    const encodedToken = localStorage.getItem("token");
-    console.log("encodedToken", encodedToken);
     fetch("/api/posts", {
-      method:"post", 
+      method: "post",
       headers: {
-        "content-type" : "application/json",
-        authorization: encodedToken
-      }, 
-      body: JSON.stringify({postData : createdPost})
+        "content-type": "application/json",
+        authorization: user.token
+      },
+      body: JSON.stringify({ postData: createdPost })
     })
-    .then((res) => res.json())
-    .then((data) => {
-      setAllPosts(data.posts)
-      setCreatedPost({content : "", image : ""});
-      console.log("data post", data);
-    })
-    .catch(e => console.log("Error is ", e));
+      .then((res) => res.json())
+      .then((data) => {
+        setAllPosts(data.posts)
+        setCreatedPost({ content: "", image: "" });
+        console.log("data post", data);
+      })
+      .catch(e => console.log("Error is ", e));
   }
 
 
   const handleTextarea = (e) => {
-    setCreatedPost({...createdPost, [e.target.name] : e.target.value});
+    setCreatedPost({ ...createdPost, [e.target.name]: e.target.value });
   }
 
   return (
@@ -45,20 +40,20 @@ const CreatePost = () => {
       <div className="createpost-container">
         <div className='createpost-text-btn'>
 
-        <textarea  
-        className='createpost-textarea' 
-        placeholder='share your thoughts !' 
-        onChange={handleTextarea}
-        value={createdPost.content} 
-        name = 'content'/>
+          <textarea
+            className='createpost-textarea'
+            placeholder='share your thoughts !'
+            onChange={handleTextarea}
+            value={createdPost.content}
+            name='content' />
 
-        <input 
-        type='url' 
-        placeholder='image url' 
-        onChange={handleTextarea} 
-        value={createdPost.image} 
-        name='image'
-        />
+          <input
+            type='url'
+            placeholder='image url'
+            onChange={handleTextarea}
+            value={createdPost.image}
+            name='image'
+          />
 
 
           <button onClick={handleCreatePost}>Share</button>
