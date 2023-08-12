@@ -5,12 +5,12 @@ import "./Homepage.css";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import Allposts from "../../components/Allposts/Allposts";
 // import { AuthContext } from "../../context/AuthContext";
-import { postContext } from "../../context/PostContext";
+import { PostContext } from "../../context/PostContext";
 import { AuthContext } from "../../context/AuthContext";
 
 const Homepage = () => {
   const { user } = useContext(AuthContext);
-  const { allPosts } = useContext(postContext);
+  const { allPosts } = useContext(PostContext);
   const [filterArray, setFilterArray] = useState([]);
 
   const handleTrending = () => {

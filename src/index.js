@@ -3,13 +3,13 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { PostProvider, postContext } from "./context/PostContext";
+import { PostProvider, PostContext } from "./context/PostContext";
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 import { createRoot } from "react-dom/client";
 
 // Call make Server
 makeServer();
-export { postContext };
+export { PostContext };
 export { AuthContext };
 
 const domNode = document.getElementById("root");

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import './CreatePost.css';
-import { postContext } from '../../context/PostContext';
+import { PostContext } from '../../context/PostContext';
 import { AuthContext } from '../../context/AuthContext';
 
 const CreatePost = () => {
@@ -9,7 +9,7 @@ const CreatePost = () => {
     image: ""
   });
   const { user } = useContext(AuthContext)
-  const { setAllPosts } = useContext(postContext);
+  const { setAllPosts } = useContext(PostContext);
 
   const handleCreatePost = () => {
     fetch("/api/posts", {

@@ -1,13 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 
-export const postContext = createContext();
+export const PostContext = createContext();
 
 export function PostProvider({ children }) {
-
   const [allPosts, setAllPosts] = useState([]);
-  const [allUsers, setAllUsers] = useState([]);
-
-
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
@@ -21,19 +17,9 @@ export function PostProvider({ children }) {
       })
       .catch((e) => console.error(e))
   }, []);
-
-
-  useEffect(() => {
-    fetch("/api/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllUsers(data.users)
-      })
-  }, [])
-
   return (
-    <postContext.Provider value={{ allPosts, setAllPosts, allUsers }}>
+    <PostContext.Provider value={{ allPosts, setAllPosts }}>
       {children}
-    </postContext.Provider>
+    </PostContext.Provider>
   )
 }
