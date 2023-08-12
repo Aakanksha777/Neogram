@@ -7,9 +7,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { PostContext } from '../../context/PostContext';
 
 
-const Allposts = ({ allPosts, handleBookmark, handleLike, handleDelete }) => {
+const Allposts = ({ allPosts }) => {
   const { user, setUser } = useContext(AuthContext);
-  const { allPosts, setAllPosts } = useContext(PostContext)
+  const { setAllPosts } = useContext(PostContext)
 
   const handleBookmark = (item) => {
     fetch(`/api/users/bookmark/${item._id}`, {

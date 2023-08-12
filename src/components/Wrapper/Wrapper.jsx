@@ -1,29 +1,33 @@
-import React, { useContext, useEffect } from 'react'
-import Navbar from '../Navbar/Navbar'
-import './Wrapper.css';
-import User from '../Sidebar/Sidebar';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext, useEffect } from "react";
+import Navbar from "../Navbar/Navbar";
+import "./Wrapper.css";
+import User from "../Sidebar/Sidebar";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Wrapper = () => {
-  const { user } = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (!user.token) {
-      navigate("/login")
-    }
-  }, [])
+  // This was causing error sometimes so I moved the logic to return directly
+  // useEffect(() => {
+  //   if (!user.token) {
+  //     navigate("/login")
+  //   }
+  // }, [])
 
-  return (
-    <div className='main-wrapper'>
-      <div className='wrapper-container'>
+  return user.token ? (
+    <div className="main-wrapper">
+      <div className="wrapper-container">
         <Navbar />
-        <main className='wrappper-main-children'><Outlet /></main>
+        <main className="wrappper-main-children">
+          <Outlet />
+        </main>
         <User />
       </div>
     </div>
-  )
-}
+  ) : (
+    <Navigate to="/login" />
+  );
+};
 
-export default Wrapper
+export default Wrapper;
