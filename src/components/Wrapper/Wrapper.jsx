@@ -4,6 +4,7 @@ import "./Wrapper.css";
 import User from "../Sidebar/Sidebar";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import Loader from "../loadingSpinner/loader";
 
 const Wrapper = () => {
   const { user } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const Wrapper = () => {
         </main>
         <User />
       </div>
+      <Loader />
     </div>
   ) : (
     <Navigate to="/login" />
