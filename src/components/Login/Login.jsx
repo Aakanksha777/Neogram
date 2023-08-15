@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 // folders 
 import { AuthContext } from '../../context/AuthContext';
 import './Login.css';
+import { TextField } from '../TextField/TextField';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -48,32 +50,34 @@ const Login = () => {
 
 
   return (
-    <form onSubmit={handleLoginSubmit} className='login-form'>
+    <div className='login-container'>
+      <form onSubmit={handleLoginSubmit} className='login-form'>
+        <h3>Login</h3>
 
-      <h3>Login</h3>
-      <input
-        placeholder='username'
-        type='text'
-        value={loginData.username}
-        onChange={handleLoginInput}
-        name='username'
-        required />
+        <TextField
+          value={loginData.username}
+          onChange={handleLoginInput}
+          inputName='username'
+          label="Username"
+          required
+        />
 
-      <input
-        placeholder='password'
-        type={showpswd ? 'text' : 'password'}
-        value={loginData.password}
-        onChange={handleLoginInput}
-        name='password'
-        required />
+        <TextField
+          value={loginData.password}
+          onChange={handleLoginInput}
+          inputName='password'
+          label='Password'
+          inputType={showpswd ? 'text' : 'password'}
+          required
+        >
+          <div className='show-pass-container'><span onClick={handleShowPswd} className='show-icon'>{showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}</span></div>
+        </TextField>
+        <button>Login</button>
 
-      <div><span onClick={handleShowPswd} className='show-icon'>&#128065;</span></div>
-
-      <button>Login</button>
-
-      <b>Don't have Account? <Link to='/register'> Signup </Link>
-      </b>
-    </form>
+        <b>Don't have Account? <Link to='/register'> Signup </Link>
+        </b>
+      </form>
+    </div>
   )
 }
 

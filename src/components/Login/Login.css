@@ -1,15 +1,32 @@
+.login-container {
+    width: 100%;
+    display: flex;
+    height: calc(100vh - 56px);
+    align-items: center;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: 30vw;
-    
-    margin-inline: auto;
     align-items: center;
     justify-content: center;
-    margin-block: 2em;
-    padding: 1em;
+    gap: 10px;
+    max-width: 400px;
+    width: 100%;
+    margin-inline: auto;
+    padding: 25px;
+    border: 1px solid;
+    border-radius: 10px 20px;
 }
-.show-icon, button, input {
+
+.show-icon,
+button,
+input {
     cursor: pointer;
+}
+
+.show-pass-container {
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
