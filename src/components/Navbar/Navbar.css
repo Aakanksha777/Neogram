@@ -1,19 +1,13 @@
 .navbar-main-container {
-    /* border: 3px solid yellowgreen; */
-    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     display: flex;
     flex-direction: column;
-    width: 18vw;
+    max-width: 200px;
+    width: 100%;
 }
 
 .navbar-links {
-    /* border: 1px solid green; */
     text-decoration: none;
     padding: 0.7em;
     font-size: 1.3rem;
-    /* color: orange; */
     display: flex;
-    /* border: 0.3px solid whitesmoke;   */
-    margin: 0.4em;
-    /* border-radius: 1em;  */
 }

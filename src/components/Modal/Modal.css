@@ -25,3 +25,13 @@
     background: #0000004d;
     z-index: -1;
 }
+
+.modal-cross-container {
+    position: relative;
+}
+
+.modal-cross {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

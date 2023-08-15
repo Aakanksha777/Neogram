@@ -12,7 +12,6 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Wrapper from "./components/Wrapper/Wrapper";
 import Topbar from "./components/Topbar/Topbar";
-
 function App() {
   return (
     <div className="App">
