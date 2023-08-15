@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
+import { AiFillLike, AiOutlineLike, AiFillDelete } from 'react-icons/ai'
 import { BsFillBookmarkCheckFill, BsBookmarkDash } from 'react-icons/bs'
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import { AuthContext } from '../../context/AuthContext';
 import { PostContext } from '../../context/PostContext';
 
@@ -62,7 +61,7 @@ const Allposts = ({ allPosts }) => {
       .then((res) => res.json())
       .then((data) => {
         if (!data.errors) {
-          setAllPosts(data)
+          setAllPosts(data.posts)
         }
       })
       .catch(e => console.log("Error is", e))
@@ -79,7 +78,7 @@ const Allposts = ({ allPosts }) => {
           <div className='post-like-bookmark'>
             {ele.likes.likedBy.some((person) => person.username === user.username) ? <AiFillLike onClick={() => handleLike(ele, true)} /> : <AiOutlineLike onClick={() => handleLike(ele, false)} />}
             {user.bookmarks.some((markedPost) => markedPost.id === ele.id) ? <BsFillBookmarkCheckFill onClick={() => handleBookmark(ele, true)} /> : <BsBookmarkDash onClick={() => handleBookmark(ele, false)} />}
-            <BsThreeDotsVertical onClick={() => handleDelete(ele)} />
+            {ele.username === user.username && <AiFillDelete onClick={() => handleDelete(ele)} />}
           </div>
           <div className='liked-text'>Liked <AiOutlineLike /> by {ele.likes.likeCount} people</div>
         </div>

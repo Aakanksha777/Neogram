@@ -1,11 +1,26 @@
-import React, { useContext, useState } from 'react'
-import './Profilepage.css'
-import Wrapper from '../../components/Wrapper/Wrapper';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import './Profilepage.css';
+import { useEffect } from 'react';
+import { AiFillEdit } from 'react-icons/ai'
+import Allposts from '../../components/Allposts/Allposts';
 
 const Profilepage = () => {
   const { user } = useContext(AuthContext);
-  const [editdata, setEditdata] = useState(user.username);
+  const [usersPosts, setUserPosts] = useState([])
+
+  useEffect(() => {
+    fetch(`/api/posts/user/${user.username}`, {
+      method: "GET"
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.errors) {
+          setUserPosts(data.posts)
+        }
+      })
+      .catch(e => console.log("Error is ", e))
+  }, [])
 
   const handleEditUser = () => {
     fetch("/api/users/edit", {
@@ -14,54 +29,30 @@ const Profilepage = () => {
         "content-type": "application/json",
         authorization: user.token
       },
-      body: JSON.stringify({ username: editdata })
+      body: JSON.stringify()
     })
       .then((res) => res.json())
       .then((data) => {
-        setEditdata(data)
+
       })
-      .catch(e => console.log("Error is ", e)
-      )
+      .catch(e => console.log("Error is ", e))
   }
 
   return (
-    <div>
-      <Wrapper children={
-        <>
-          <div className='user-container'>
-            <div className="user-profile-container">
-              <img alt="profile" src='https://fastly.picsum.photos/id/1012/150/150.jpg?hmac=TMFzV0LA0dsm0SmOd_oqZUH4hZjd_fnFAQTFtV0U32U' className="user-profile" />
-            </div>
+    <div className='profile-page'>
+      <div className="profile-container">
+        <img src={user.image} alt={`${user.firstName} ${user.lastName}`} />
+        <h1>{user.firstName} {user.lastName}</h1>
+        <p>{user.bio}</p>
+        <p>Edit Profile: <AiFillEdit /></p>
+        <p>Followers: {user.followers.length}</p>
 
-            <div className="user-bio">
-              <div className="uername">
-                <input value={editdata} name='editUsername' />
-                <p>@{user.username}{user.lastName}</p>
-                <hr />
-              </div>
-
-              <div className="userLink">
-                <h4>{user.bio}</h4>
-                <p>{user.github_Url}</p>
-              </div>
-
-
-
-              <div className="followers">
-                <p>{user.following}following</p>
-                <p>{user.followers} followers</p>
-              </div>
-
-            </div>
-
-            <div className="user-edit">
-              <button onClick={handleEditUser}>Edit</button>
-            </div>
-          </div>
-        </>
-      } />
+        <p>GitHub: <a href={user.github_Url} target="_blank" rel="noopener noreferrer">{user.github_Url}</a></p>
+      </div>
+      <div class="user-posts">
+        <Allposts allPosts={usersPosts} />
+      </div>
     </div>
-
   )
 }
 
