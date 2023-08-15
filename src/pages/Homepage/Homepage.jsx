@@ -40,7 +40,7 @@ const Homepage = () => {
   // ? check whether exist or not.
 
   return (
-    <div>
+    <div className="homepage">
       <CreatePost />
       <div className="filter-btns">
         <b>Filters</b>

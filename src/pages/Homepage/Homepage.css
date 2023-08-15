@@ -7,23 +7,18 @@
 }
 
 .homepage-children {
-    /* border: 5px solid yellowgreen; */
-    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     width: 60%;
 }
 
-
-.children-posts {
-    width: 60%;
-    /* border: 1px solid teal; */
-    margin-inline: auto;
+.homepage {
+    max-width: 760px;
+    padding-inline: 25px;
 }
 
-.post-container {
-    border: 3px solid yellowgreen;
-    width: 40vw;
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
-}
+.children-posts {}
+
+.post-container {}
+
 .children-post-image {
     width: 25vw;
 }
@@ -38,8 +33,6 @@
 }
 
 .post-like-bookmark {
-    /* border: 0.3px solid whitesmoke; */
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
     margin-block: 0.5em;
     margin-inline: auto;
     padding: 0.5em;

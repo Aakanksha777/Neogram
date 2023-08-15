@@ -16,7 +16,6 @@ const Sidebar = () => {
   }, []);
 
   const handleFollowers = (ele) => {
-    debugger
     const url = `/api/users/${ele.isFollowed ? "unfollow" : "follow"}/${ele._id}`;
     fetch(url, {
       method: "post",
@@ -28,8 +27,7 @@ const Sidebar = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("user", data.user)
-        setUser(data.user);
+        setUser({ ...user, ...data.user });
       })
       .catch((e) => console.log("Error is ", e));
   };

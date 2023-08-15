@@ -10,9 +10,8 @@
 .wrapper-container {
     display: flex;
     justify-content: space-between;
+    max-width: 1200px;
+    margin-inline: auto;
 }
 
-.wrappper-main-children {
-    margin-inline: 2em;
-
-}
+.wrappper-main-children {}
