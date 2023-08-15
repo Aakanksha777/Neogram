@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-import { FcLike } from 'react-icons/fc'
-import { BiBookmarkHeart } from 'react-icons/bi'
-import { AiOutlineLike } from 'react-icons/ai'
+import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
+import { BsFillBookmarkCheckFill, BsBookmarkDash } from 'react-icons/bs'
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { AuthContext } from '../../context/AuthContext';
 import { PostContext } from '../../context/PostContext';
@@ -10,9 +9,11 @@ import { PostContext } from '../../context/PostContext';
 const Allposts = ({ allPosts }) => {
   const { user, setUser } = useContext(AuthContext);
   const { setAllPosts } = useContext(PostContext)
+  console.log("allPost", allPosts)
 
-  const handleBookmark = (item) => {
-    fetch(`/api/users/bookmark/${item._id}`, {
+  const handleBookmark = (item, isBookmarked) => {
+    const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${item._id}`
+    fetch(url, {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -22,13 +23,17 @@ const Allposts = ({ allPosts }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser({ ...user, bookmarks: data.bookmarks })
+        if (!data.errors) {
+          setUser({ ...user, bookmarks: data.bookmarks })
+        }
       })
       .catch(e => console.log("Error is ", e))
   }
 
-  const handleLike = (item) => {
-    fetch(`/api/posts/like/${item._id}`, {
+
+  const handleLike = (item, isAlreadyLiked) => {
+    const url = `/api/posts/${isAlreadyLiked ? "dislike" : "like"}/${item._id}`
+    fetch(url, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -38,12 +43,16 @@ const Allposts = ({ allPosts }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setAllPosts(data.posts)
+        debugger
+        if (!data.errors) {
+          setAllPosts(data.posts)
+        }
       })
   }
 
   const handleDelete = (item) => {
-    fetch(`/api/posts/${item._id}`, {
+    const url = `/api/posts/${item._id}`
+    fetch(url, {
       method: "delete",
       headers: {
         "content-type": "application/json",
@@ -52,7 +61,9 @@ const Allposts = ({ allPosts }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setAllPosts(data)
+        if (!data.errors) {
+          setAllPosts(data)
+        }
       })
       .catch(e => console.log("Error is", e))
   }
@@ -66,8 +77,8 @@ const Allposts = ({ allPosts }) => {
           <img src={ele.image} alt='posts' className='children-post-image' />
           <p>{ele.content}</p>
           <div className='post-like-bookmark'>
-            <FcLike onClick={() => handleLike(ele)} />
-            <BiBookmarkHeart onClick={() => handleBookmark(ele)} />
+            {ele.likes.likedBy.some((person) => person.username === user.username) ? <AiFillLike onClick={() => handleLike(ele, true)} /> : <AiOutlineLike onClick={() => handleLike(ele, false)} />}
+            {user.bookmarks.some((markedPost) => markedPost.id === ele.id) ? <BsFillBookmarkCheckFill onClick={() => handleBookmark(ele, true)} /> : <BsBookmarkDash onClick={() => handleBookmark(ele, false)} />}
             <BsThreeDotsVertical onClick={() => handleDelete(ele)} />
           </div>
           <div className='liked-text'>Liked <AiOutlineLike /> by {ele.likes.likeCount} people</div>

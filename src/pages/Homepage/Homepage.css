@@ -15,9 +15,17 @@
     padding-inline: 25px;
 }
 
-.children-posts {}
+.children-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-.post-container {}
+.post-container {
+    padding: 25px;
+    border-radius: 10px;
+    background-color: var(--cl-blue);
+}
 
 .children-post-image {
     width: 25vw;

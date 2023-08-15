@@ -4,6 +4,7 @@ export const PostContext = createContext();
 
 export function PostProvider({ children }) {
   const [allPosts, setAllPosts] = useState([]);
+
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
@@ -17,6 +18,7 @@ export function PostProvider({ children }) {
       })
       .catch((e) => console.error(e))
   }, []);
+
   return (
     <PostContext.Provider value={{ allPosts, setAllPosts }}>
       {children}

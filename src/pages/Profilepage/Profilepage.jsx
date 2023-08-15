@@ -18,7 +18,6 @@ const Profilepage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("edited data", data)
         setEditdata(data)
       })
       .catch(e => console.log("Error is ", e)

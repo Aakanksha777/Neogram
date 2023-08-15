@@ -14,10 +14,8 @@ const Homepage = () => {
   const [filterArray, setFilterArray] = useState([]);
 
   const handleTrending = () => {
-    console.log("trending")
     const trendingArray = filterArray.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
     setFilterArray(trendingArray)
-    console.log("trendingArray", trendingArray);
   };
 
   const handleLatestPosts = () => {

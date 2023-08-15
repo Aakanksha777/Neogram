@@ -47,7 +47,6 @@ const Sidebar = () => {
       return otheruser;
     });
     setFilteredUser(usersToBeFollowed);
-    console.log("usersToBeFollowed", usersToBeFollowed);
   }, [allUsers, user]);
 
   return (

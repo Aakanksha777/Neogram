@@ -24,7 +24,6 @@ const CreatePost = () => {
       .then((data) => {
         setAllPosts(data.posts)
         setCreatedPost({ content: "", image: "" });
-        console.log("data post", data);
       })
       .catch(e => console.log("Error is ", e));
   }
