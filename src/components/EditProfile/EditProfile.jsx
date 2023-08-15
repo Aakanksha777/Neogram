@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { TextField } from '../TextField/TextField'
 import { AuthContext } from '../../context/AuthContext';
 
-const EditProfile = ({ profileInfo }) => {
+const EditProfile = ({ profileInfo, onClose }) => {
     const { user, setUser } = useContext(AuthContext);
     const [formFields, setFormFields] = useState(profileInfo)
 
@@ -18,13 +18,14 @@ const EditProfile = ({ profileInfo }) => {
                 "content-type": "application/json",
                 authorization: user.token
             },
-            body: JSON.stringify({ ...user, ...formFields })
+            body: JSON.stringify({ post: { ...user, ...formFields } })
         })
             .then((res) => res.json())
             .then((data) => {
-                debugger
+                // The API is not working giving the initial data everytime. So I am setting the state manually to the updated value 
                 if (!data.errors) {
-                    setUser({ ...user, ...data.user })
+                    setUser({ ...user, ...formFields })
+                    onClose()
                 }
             })
             .catch(e => console.log("Error is ", e))

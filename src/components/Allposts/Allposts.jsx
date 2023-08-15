@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AiFillLike, AiOutlineLike, AiFillDelete } from 'react-icons/ai'
+import { AiFillLike, AiOutlineLike, AiFillDelete, AiFillEdit } from 'react-icons/ai'
 import { BsFillBookmarkCheckFill, BsBookmarkDash } from 'react-icons/bs'
 import { AuthContext } from '../../context/AuthContext';
 import { PostContext } from '../../context/PostContext';
@@ -28,7 +28,24 @@ const Allposts = ({ allPosts }) => {
       })
       .catch(e => console.log("Error is ", e))
   }
-
+  const handleEdit = (item) => {
+    const url = `/api/posts/edit/${item._id}`
+    fetch(url, {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+        authorization: user.token
+      },
+      body: JSON.stringify({})
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.errors) {
+          setUser({ ...user, })
+        }
+      })
+      .catch(e => console.log("Error is ", e))
+  }
 
   const handleLike = (item, isAlreadyLiked) => {
     const url = `/api/posts/${isAlreadyLiked ? "dislike" : "like"}/${item._id}`
@@ -66,6 +83,7 @@ const Allposts = ({ allPosts }) => {
       })
       .catch(e => console.log("Error is", e))
   }
+
   return (
     <div className="children-posts">
       {allPosts.length > 0 ? allPosts.map((ele) => (
@@ -78,7 +96,11 @@ const Allposts = ({ allPosts }) => {
           <div className='post-like-bookmark'>
             {ele.likes.likedBy.some((person) => person.username === user.username) ? <AiFillLike onClick={() => handleLike(ele, true)} /> : <AiOutlineLike onClick={() => handleLike(ele, false)} />}
             {user.bookmarks.some((markedPost) => markedPost.id === ele.id) ? <BsFillBookmarkCheckFill onClick={() => handleBookmark(ele, true)} /> : <BsBookmarkDash onClick={() => handleBookmark(ele, false)} />}
-            {ele.username === user.username && <AiFillDelete onClick={() => handleDelete(ele)} />}
+            {ele.username === user.username &&
+              <>
+                <AiFillDelete onClick={() => handleDelete(ele)} />
+                <AiFillEdit onClick={() => { }} />
+              </>}
           </div>
           <div className='liked-text'>Liked <AiOutlineLike /> by {ele.likes.likeCount} people</div>
         </div>

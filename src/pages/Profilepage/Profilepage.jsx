@@ -50,7 +50,7 @@ const Profilepage = () => {
         <Allposts allPosts={usersPosts} />
       </div>
       {showProfileEdit && <Modal onClose={handleClose}>
-        <EditProfile profileInfo={profileInfo} />
+        <EditProfile profileInfo={profileInfo} onClose={handleClose} />
       </Modal>}
     </div>
   )
