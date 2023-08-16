@@ -1,9 +1,9 @@
-.createpost-container {
+.post-form-container {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
 }
 
-.createpost-text-btn {
+.post-form-text-btn {
     display: flex;
     width: 100%;
     flex-direction: column;

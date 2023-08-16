@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { AiFillEdit } from 'react-icons/ai'
 import Allposts from '../../components/Allposts/Allposts';
 import Modal from '../../components/Modal/Modal';
-import CreatePost from '../../components/CreatePost/CreatePost';
 import EditProfile from '../../components/EditProfile/EditProfile';
 
 const Profilepage = () => {

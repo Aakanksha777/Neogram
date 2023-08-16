@@ -1,14 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiFillLike, AiOutlineLike, AiFillDelete, AiFillEdit } from 'react-icons/ai'
 import { BsFillBookmarkCheckFill, BsBookmarkDash } from 'react-icons/bs'
 import { AuthContext } from '../../context/AuthContext';
 import { PostContext } from '../../context/PostContext';
+import Modal from '../Modal/Modal';
+import PostForm from '../PostForm/PostForm';
 
 
 const Allposts = ({ allPosts }) => {
   const { user, setUser } = useContext(AuthContext);
   const { setAllPosts } = useContext(PostContext)
-  console.log("allPosts", allPosts)
+  const [showEditPost, setShowEditPost] = useState(false)
+
+  const handleClose = () => {
+    setShowEditPost(false)
+  }
   const handleBookmark = (item, isBookmarked) => {
     const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${item._id}`
     fetch(url, {
@@ -105,6 +111,9 @@ const Allposts = ({ allPosts }) => {
       ))
         :
         <h2>No posts</h2>}
+      {showEditPost && <Modal onClose={handleClose}>
+        <PostForm onClose={handleClose} />
+      </Modal>}
     </div>
   )
 }

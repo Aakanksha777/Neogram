@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { BiTrendingUp } from "react-icons/bi";
 import { PiSortAscendingBold, PiSortAscendingThin } from "react-icons/pi";
 import "./Homepage.css";
-import CreatePost from "../../components/CreatePost/CreatePost";
 import Allposts from "../../components/Allposts/Allposts";
 import { PostContext } from "../../context/PostContext";
 import { AuthContext } from "../../context/AuthContext";
+import PostForm from "../../components/PostForm/PostForm";
 
 const Homepage = () => {
   const { user } = useContext(AuthContext);
@@ -53,7 +53,7 @@ const Homepage = () => {
 
   return (
     <div className="homepage">
-      <CreatePost />
+      <PostForm />
       <div className="filter-btns">
         <b>Filters</b>
 

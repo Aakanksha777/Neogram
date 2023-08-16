@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import './CreatePost.css';
+import './PostForm.css';
 import { PostContext } from '../../context/PostContext';
 import { AuthContext } from '../../context/AuthContext';
 
-const CreatePost = () => {
+const PostForm = () => {
   const [createdPost, setCreatedPost] = useState({
     content: "",
     image: ""
@@ -36,11 +36,11 @@ const CreatePost = () => {
   return (
     <div>
       <h2>Post</h2>
-      <div className="createpost-container">
-        <div className='createpost-text-btn'>
+      <div className="post-form-container">
+        <div className='post-form-text-btn'>
 
           <textarea
-            className='createpost-textarea'
+            className='post-form-textarea'
             placeholder='share your thoughts !'
             onChange={handleTextarea}
             value={createdPost.content}
@@ -62,4 +62,4 @@ const CreatePost = () => {
   )
 }
 
-export default CreatePost
+export default PostForm
