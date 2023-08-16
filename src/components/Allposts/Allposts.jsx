@@ -11,6 +11,10 @@ const Allposts = ({ allPosts }) => {
   const { user, setUser } = useContext(AuthContext);
   const { setAllPosts } = useContext(PostContext)
   const [showEditPost, setShowEditPost] = useState(false)
+  const [editPostData, setEditPostData] = useState({
+    content: "",
+    image: ""
+  })
 
   const handleClose = () => {
     setShowEditPost(false)
@@ -33,23 +37,9 @@ const Allposts = ({ allPosts }) => {
       })
       .catch(e => console.log("Error is ", e))
   }
-  const handleEdit = (item) => {
-    const url = `/api/posts/edit/${item._id}`
-    fetch(url, {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-        authorization: user.token
-      },
-      body: JSON.stringify({})
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data.errors) {
-          setUser({ ...user, })
-        }
-      })
-      .catch(e => console.log("Error is ", e))
+  const handleEditModal = (item) => {
+    setEditPostData(item)
+    setShowEditPost(true)
   }
 
   const handleLike = (item, isAlreadyLiked) => {
@@ -103,7 +93,7 @@ const Allposts = ({ allPosts }) => {
             {ele.username === user.username &&
               <>
                 <AiFillDelete onClick={() => handleDelete(ele)} />
-                <AiFillEdit onClick={() => { }} />
+                <AiFillEdit onClick={() => handleEditModal(ele)} />
               </>}
           </div>
           <div className='liked-text'>Liked <AiOutlineLike /> by {ele.likes.likeCount} people</div>
@@ -112,7 +102,7 @@ const Allposts = ({ allPosts }) => {
         :
         <h2>No posts</h2>}
       {showEditPost && <Modal onClose={handleClose}>
-        <PostForm onClose={handleClose} />
+        <PostForm postData={editPostData} onClose={handleClose} />
       </Modal>}
     </div>
   )

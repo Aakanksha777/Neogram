@@ -30,6 +30,7 @@ const Profilepage = () => {
       })
       .catch(e => console.log("Error is ", e))
   }, [])
+
   const handleClose = () => {
     setShowProfileEdit(false)
   }

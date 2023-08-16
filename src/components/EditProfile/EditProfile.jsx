@@ -23,13 +23,12 @@ const EditProfile = ({ profileInfo, onClose }) => {
                 "content-type": "application/json",
                 authorization: user.token
             },
-            body: JSON.stringify({ post: { ...user, ...formFields } })
+            body: JSON.stringify({ userData: { ...user, ...formFields } })
         })
             .then((res) => res.json())
             .then((data) => {
-                // The API is not working giving the initial data everytime. So I am setting the state manually to the updated value 
                 if (!data.errors) {
-                    setUser({ ...user, ...formFields })
+                    setUser(data.user)
                     onClose()
                 }
             })

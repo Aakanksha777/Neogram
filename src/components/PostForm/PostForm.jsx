@@ -3,16 +3,18 @@ import './PostForm.css';
 import { PostContext } from '../../context/PostContext';
 import { AuthContext } from '../../context/AuthContext';
 
-const PostForm = () => {
-  const [createdPost, setCreatedPost] = useState({
+const PostForm = ({ postData, onClose }) => {
+  const [createdPost, setCreatedPost] = useState(postData || {
     content: "",
     image: ""
   });
   const { user } = useContext(AuthContext)
   const { setAllPosts } = useContext(PostContext);
 
-  const handleCreatePost = () => {
-    fetch("/api/posts", {
+  const handlePostSubmit = (e) => {
+    e.preventDefault()
+    const url = `/api/posts${postData ? "/edit/" + postData._id : ""}`
+    fetch(url, {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -24,6 +26,7 @@ const PostForm = () => {
       .then((data) => {
         setAllPosts(data.posts)
         setCreatedPost({ content: "", image: "" });
+        onClose && onClose()
       })
       .catch(e => console.log("Error is ", e));
   }
@@ -35,10 +38,8 @@ const PostForm = () => {
 
   return (
     <div>
-      <h2>Post</h2>
       <div className="post-form-container">
-        <div className='post-form-text-btn'>
-
+        <form className='post-form-text-btn' onSubmit={handlePostSubmit}>
           <textarea
             className='post-form-textarea'
             placeholder='share your thoughts !'
@@ -53,10 +54,8 @@ const PostForm = () => {
             value={createdPost.image}
             name='image'
           />
-
-
-          <button onClick={handleCreatePost}>Share</button>
-        </div>
+          <button >Share</button>
+        </form>
       </div>
     </div>
   )
