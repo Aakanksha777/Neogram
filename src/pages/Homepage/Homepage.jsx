@@ -1,26 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BiTrendingUp } from "react-icons/bi";
-import { PiSortAscendingBold } from "react-icons/pi";
+import { PiSortAscendingBold, PiSortAscendingThin } from "react-icons/pi";
 import "./Homepage.css";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import Allposts from "../../components/Allposts/Allposts";
-// import { AuthContext } from "../../context/AuthContext";
 import { PostContext } from "../../context/PostContext";
 import { AuthContext } from "../../context/AuthContext";
 
 const Homepage = () => {
   const { user } = useContext(AuthContext);
   const { allPosts } = useContext(PostContext);
+  const [getFollowedUser, setGetFollowedUser] = useState([]);
   const [filterArray, setFilterArray] = useState([]);
+  const [showIsTrending, setShowIsTrending] = useState(true)
+  const [showIsLatest, setShowIsLatest] = useState(true)
 
-  const handleTrending = () => {
-    const trendingArray = filterArray.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
-    setFilterArray(trendingArray)
+  const handleTrending = (isTrending) => {
+    if (isTrending) {
+      setShowIsTrending(false)
+      const trendingArray = getFollowedUser.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
+      setFilterArray([...trendingArray])
+    }
+    else {
+      setShowIsTrending(true)
+      setFilterArray([...getFollowedUser])
+    }
   };
 
-  const handleLatestPosts = () => {
-    const latestArray = filterArray.sort((a, b) => b.createdAt - a.createdAt);
-    setFilterArray(latestArray);
+  const handleLatestPosts = (isLatest) => {
+    if (isLatest) {
+      const latestArray = getFollowedUser.sort((a, b) => b.createdAt - a.createdAt);
+      setFilterArray([...latestArray]);
+    } else {
+      setFilterArray([...getFollowedUser])
+    }
   }
 
   useEffect(() => {
@@ -30,6 +43,7 @@ const Homepage = () => {
     const updateArray = allPosts?.filter((post) =>
       userAndFollowings?.some((username) => username === post?.username)
     );
+    setGetFollowedUser(updateArray)
     setFilterArray(updateArray)
   }, [allPosts, user]);
 
@@ -42,16 +56,15 @@ const Homepage = () => {
       <CreatePost />
       <div className="filter-btns">
         <b>Filters</b>
-        <button onClick={handleTrending}>
-          <BiTrendingUp />
+
+        <button onClick={() => handleLatestPosts(showIsTrending)}>
+          {showIsTrending ? <BiTrendingUp /> : <BiTrendingUp />}
         </button>
-        <button onClick={handleLatestPosts}>
-          <PiSortAscendingBold />
+        <button onClick={() => handleLatestPosts(showIsTrending)}>
+          {showIsLatest ? <PiSortAscendingBold /> : <PiSortAscendingThin />}
         </button>
       </div>
-
       <Allposts allPosts={filterArray} />
-      {/* use useState  */}
     </div>
   );
 };

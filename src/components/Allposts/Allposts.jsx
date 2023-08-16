@@ -8,8 +8,7 @@ import { PostContext } from '../../context/PostContext';
 const Allposts = ({ allPosts }) => {
   const { user, setUser } = useContext(AuthContext);
   const { setAllPosts } = useContext(PostContext)
-  console.log("allPost", allPosts)
-
+  console.log("allPosts", allPosts)
   const handleBookmark = (item, isBookmarked) => {
     const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${item._id}`
     fetch(url, {
@@ -59,7 +58,6 @@ const Allposts = ({ allPosts }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        debugger
         if (!data.errors) {
           setAllPosts(data.posts)
         }
