@@ -16,7 +16,9 @@ const Sidebar = () => {
   }, []);
 
   const handleFollowers = (ele) => {
-    const url = `/api/users/${ele.isFollowed ? "unfollow" : "follow"}/${ele._id}`;
+    const url = `/api/users/${ele.isFollowed ? "unfollow" : "follow"}/${
+      ele._id
+    }`;
     fetch(url, {
       method: "post",
       headers: {
@@ -54,11 +56,7 @@ const Sidebar = () => {
       {filteredUser.map((ele) => (
         <div className="user-mapping" key={ele._id}>
           <div className="user-profile-pic1">
-            <img
-              alt="user"
-              src={ele.image}
-              style={{ width: "12%", borderRadius: "50%" }}
-            />
+            <img alt="user" src={ele.image} className="followings-pic" />
           </div>
           <div className="user-bio1">
             <p>{ele.firstname}</p>
@@ -68,15 +66,11 @@ const Sidebar = () => {
           </div>
           {ele.isFollowed ? (
             <div className="user-follow-btn1">
-              <button onClick={() => handleFollowers(ele)}>
-                Unfollow
-              </button>
+              <button onClick={() => handleFollowers(ele)}>Unfollow</button>
             </div>
           ) : (
             <div className="user-follow-btn1">
-              <button onClick={() => handleFollowers(ele)}>
-                Follow
-              </button>
+              <button onClick={() => handleFollowers(ele)}>Follow</button>
             </div>
           )}
         </div>

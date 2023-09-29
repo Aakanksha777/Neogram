@@ -1,8 +1,8 @@
 .navbar-main-container {
     display: flex;
     flex-direction: column;
-    max-width: 200px;
-    width: 100%;
+    /* background-color: rgb(16, 43, 63); */
+    /* height: 100vh; */
 }
 
 .navbar-links {
@@ -10,4 +10,9 @@
     padding: 0.7em;
     font-size: 1.3rem;
     display: flex;
+    color: whitesmoke;
+}
+
+.navlink-text {
+    margin-inline: 0.6em;
 }

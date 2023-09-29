@@ -1,8 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    }
+    .main-login-container {
+        display: flex;
+        height: 90vh;
+        box-sizing: border-box;
+    }
+    
+    .background-carousel {
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0; 
+        bottom: 0;
+        height: 100vh;
+        z-index: 1;
+    }
+    
 .login-container {
     width: 100%;
     display: flex;
     height: calc(100vh - 56px);
     align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: red(0, 0, 0, 0.5);
+    z-index: 2; 
 }
 
 .login-form {
@@ -10,16 +39,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
     max-width: 400px;
     min-width: 400px;
-    width: 100%;
+    /* width: 100%; */
     margin-inline: auto;
-    padding: 25px;
-    border: 1px solid;
+    padding-inline: 0.7em;
+    padding-block: 2em;
     border-radius: 10px 20px;
-    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(169, 177, 184);
+    opacity: 0.8;
 }
+
+.login-header {
+    font-family: cursive, sans-serif;
+}
+/* .show-pass-container {
+   margin: 5px;
+} */
 
 .show-icon,
 button,
@@ -27,8 +64,17 @@ input {
     cursor: pointer;
 }
 
-.show-pass-container {
-    position: absolute;
-    right: 20px;
-    top: 20px;
+.submit-btn {
+    /* border: 5px solid lightblue; */
+    background-color: darkturquoise;
+    color: aliceblue;
+    font-size: 17px;
+    padding-block: 0.3em;
+    padding-inline: 1em;
+    margin: 0.8em;
+    border: none;
+}
+
+.navigate-signup {
+    text-decoration: none;
 }

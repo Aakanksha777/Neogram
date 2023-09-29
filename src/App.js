@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
 
 // folders
 import "./App.css";
@@ -15,9 +14,9 @@ import Topbar from "./components/Topbar/Topbar";
 function App() {
   return (
     <div className="App">
-      <div className="topbar-box">
-        <Topbar />
-      </div>
+      {/* <div className="topbar-box">
+      <Topbar />
+      </div> */}
       <Routes>
         {/* checking login for these routes. This logic is written inside Wrapper component*/}
         <Route path="/" element={<Wrapper />}>
@@ -35,3 +34,8 @@ function App() {
 }
 
 export default App;
+
+//1. imported top bar globally.
+//2. route tag opening and closing , wrap all the app components.
+//3. wrapper path will be '/'.
+//4. login path '/login' && signup path '/register'.

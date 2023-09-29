@@ -7,10 +7,17 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  /* background-color: var(--cl-navy-blue); */
+  background-color: var(--cl-navy-blue);
   min-height: 100vh;
+  padding: 1em;
+  color: whitesmoke;
+  scroll-behavior: smooth;
 }
 
 .topbar {
   border: 1px solid blue;
+}
+
+button {
+  background-color: rgb(255 61 100);
 }

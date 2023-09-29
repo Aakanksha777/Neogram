@@ -1,18 +1,19 @@
-import React, { useContext, useState } from 'react'
-// folders 
-import Allposts from '../../components/Allposts/Allposts'
-import { PostContext } from '../../context/PostContext';
+import React, { useContext } from "react";
+import "./Explorepage.css";
+// folders
+import Allposts from "../../components/Allposts/Allposts";
+import { PostContext } from "../../context/PostContext";
 
 const Explorepage = () => {
-  const { allPosts } = useContext(PostContext)
+  const { allPosts } = useContext(PostContext);
   return (
     <div>
       <h2>Latest Posts</h2>
-      <Allposts
-        allPosts={allPosts}
-      />
+      <div className="explore-post">
+        <Allposts allPosts={allPosts} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Explorepage
+export default Explorepage;
