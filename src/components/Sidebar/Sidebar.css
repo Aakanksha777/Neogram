@@ -1,8 +1,6 @@
 .user-container1 {
-    /* border: 3px solid yellowgreen; */
     display: flex;
     flex-direction: column;
-    width: 20vw;
     background-color: rgb(16, 43, 63);
 }
 
@@ -14,8 +12,10 @@
 }
 
 .followings-pic {
-    width: 20%;
-    border-radius: 40%;
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .user-bio1 {

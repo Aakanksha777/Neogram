@@ -11,8 +11,8 @@ const Wrapper = () => {
   const { user } = useContext(AuthContext);
 
   return user.token ? (
-    <div className="main-wrapper">
-      {/* this is the wrapper  */}
+    <div>
+      {/* leftbar + main-section + rightbar */}
       <div className="wrapper-container">
         <Navbar />
         <main className="wrappper-main-children">

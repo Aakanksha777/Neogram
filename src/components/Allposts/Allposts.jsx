@@ -86,7 +86,7 @@ const Allposts = ({ allPosts }) => {
   };
 
   return (
-    <div className="children-posts">
+    <div>
       {allPosts.length > 0 ? (
         allPosts.map((ele) => (
           <div className="post-container" key={ele._id}>

@@ -1,30 +1,5 @@
-.homepage-main-container {
-    /* border: 4px solid black; */
-    margin: 10px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.homepage-children {
-    width: 60%;
-}
-
-.homepage {
-    min-width: 600px;
-    padding-inline: 25px;
-}
-
 .children-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.post-container {
-    padding: 25px;
-    border-radius: 10px;
-    background-color: var(--cl-blue);
+    border: 2px solid pink;
 }
 
 .children-post-image {

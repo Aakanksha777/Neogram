@@ -2,14 +2,16 @@
   box-sizing: border-box;
   margin: 0;
 }
-
+body, html {
+  overflow: auto;
+}
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
   background-color: var(--cl-navy-blue);
-  min-height: 100vh;
-  padding: 1em;
+  /* min-height: 100vh; */
+  padding-top: 1em;
   color: whitesmoke;
   scroll-behavior: smooth;
 }

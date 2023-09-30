@@ -119,7 +119,7 @@ const Login = () => {
           </div>
 
           <button className="submit-btn">Login</button>
-
+          {/* guest mode  */}
           <b>
             Don't have Account ?{" "}
             <Link to="/register" className="navigate-signup">

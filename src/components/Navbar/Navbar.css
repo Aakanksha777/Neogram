@@ -1,8 +1,6 @@
 .navbar-main-container {
     display: flex;
     flex-direction: column;
-    /* background-color: rgb(16, 43, 63); */
-    /* height: 100vh; */
 }
 
 .navbar-links {

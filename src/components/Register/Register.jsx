@@ -59,20 +59,18 @@ const Register = () => {
     }
     fetch("/api/auth/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(registerData),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.encodedToken) {
           localStorage.setItem("encodedToken", data.encodedToken);
+          console.log("Success: Data has an encodedToken");
           handleShowPopUp("Success");
           navigate("/login");
         } else {
+          console.log("User already exists");
           handleShowPopUp(`User Already Exists.`);
-          // alert("User Already Exists.");
         }
       })
       .catch((err) => {
