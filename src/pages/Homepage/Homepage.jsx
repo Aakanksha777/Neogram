@@ -15,30 +15,45 @@ const Homepage = () => {
   const [showIsTrending, setShowIsTrending] = useState(true);
   const [showIsLatest, setShowIsLatest] = useState(true);
 
-  const handleTrending = (isTrending) => {
-    if (isTrending) {
-      setShowIsTrending(false);
-      const trendingArray = getFollowedUser.sort(
-        (a, b) => b.likes.likeCount - a.likes.likeCount
-      );
-      setFilterArray([...trendingArray]);
-    } else {
-      setShowIsTrending(true);
-      setFilterArray([...getFollowedUser]);
-    }
+  // const handleTrending = (isTrending) => {
+  //   if (isTrending) {
+  //     setShowIsTrending(false);
+  //     const trendingArray = getFollowedUser.sort(
+  //       (a, b) => b.likes.likeCount - a.likes.likeCount
+  //     );
+  //     setFilterArray([...trendingArray]);
+  //   } else {
+  //     setShowIsTrending(true);
+  //     setFilterArray([...getFollowedUser]);
+  //   }
+  // };
+
+  // const handleLatestPosts = (isLatest) => {
+  //   if (isLatest) {
+  //     const latestArray = getFollowedUser.sort(
+  //       (a, b) => b.createdAt - a.createdAt
+  //     );
+  //     setFilterArray([...latestArray]);
+  //   } else {
+  //     setFilterArray([...getFollowedUser]);
+  //   }
+  // };
+
+  const handleTrending = () => {
+    const trendingArray = getFollowedUser
+      .slice()
+      .sort((a, b) => b.likes.likeCount - a.likes.likeCount);
+    console.log("trendingArray", [...trendingArray]);
+    setFilterArray([...trendingArray]);
   };
 
-  const handleLatestPosts = (isLatest) => {
-    if (isLatest) {
-      const latestArray = getFollowedUser.sort(
-        (a, b) => b.createdAt - a.createdAt
-      );
-      setFilterArray([...latestArray]);
-    } else {
-      setFilterArray([...getFollowedUser]);
-    }
+  const handleLatestPosts = () => {
+    const latestArray = getFollowedUser
+      .slice()
+      .sort((a, b) => b.createdAt - a.createdAt);
+    console.log("latestArray", [...latestArray]);
+    setFilterArray([...latestArray]);
   };
-
   useEffect(() => {
     const userAndFollowings = user?.following?.map(
       (person) => person?.username
@@ -61,19 +76,22 @@ const Homepage = () => {
       <PostForm />
       <div className="filter-btns">
         <b className="filter-text">Filters</b>
+        <button onClick={() => handleTrending()}>Trending</button>
+        <button onClick={() => handleLatestPosts()}>Latest</button>
+        {/* <button
+          onClick={() => handleLatestPosts(showIsTrending)}
+          className="homepage-filter"
+        >
+          {showIsTrending && <BiTrendingUp />}
+        </button> */}
 
-        <button
+        {/* sorting by latest  */}
+        {/* <button
           onClick={() => handleLatestPosts(showIsTrending)}
           className="homepage-filter"
         >
-          {showIsTrending ? <BiTrendingUp /> : <BiTrendingUp />}
-        </button>
-        <button
-          onClick={() => handleLatestPosts(showIsTrending)}
-          className="homepage-filter"
-        >
-          {showIsLatest ? <PiSortAscendingBold /> : <PiSortAscendingThin />}
-        </button>
+          {showIsLatest && <PiSortAscendingBold />}
+        </button> */}
       </div>
       <Allposts allPosts={filterArray} />
     </div>

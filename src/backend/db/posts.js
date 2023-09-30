@@ -1,11 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
 
-/**
- * Posts can be added here.
- * You can add default posts of your wish with different attributes
- * */
-
 export const posts = [
   {
     _id: uuid(),
@@ -14,7 +9,7 @@ export const posts = [
     content:
       "Went to this hangout place, Bob's in Marathalli yesterday. The ambience is real good and the mocktails are really fresh.",
     likes: {
-      likeCount: 0,
+      likeCount: 100,
       likedBy: [],
       dislikedBy: [],
     },
@@ -49,7 +44,7 @@ export const posts = [
     content:
       "Nairobi is such a great city with so many people going about their business. One thing that you need to know while there are the places where to find great food/meals. ",
     likes: {
-      likeCount: 0,
+      likeCount: 450,
       likedBy: [],
       dislikedBy: [],
     },
@@ -85,7 +80,7 @@ export const posts = [
     content:
       "Nairobi is such a great city with so many people going about their business. One thing that you need to know while there are the places where to find great food/meals. ",
     likes: {
-      likeCount: 0,
+      likeCount: 200,
       likedBy: [],
       dislikedBy: [],
     },
@@ -121,7 +116,7 @@ export const posts = [
     content:
       "Nairobi is such a great city with so many people going about their business. One thing that you need to know while there are the places where to find great food/meals. ",
     likes: {
-      likeCount: 0,
+      likeCount: 1000,
       likedBy: [],
       dislikedBy: [],
     },
@@ -156,7 +151,7 @@ export const posts = [
       "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlmZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     content: "The purpose of our lives is to be happy.",
     likes: {
-      likeCount: 0,
+      likeCount: 40,
       likedBy: [],
       dislikedBy: [],
     },
@@ -170,7 +165,7 @@ export const posts = [
       "https://images.unsplash.com/photo-1542353436-312f0e1f67ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxpZmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     content: "Life is what happens when you're busy making other plans",
     likes: {
-      likeCount: 0,
+      likeCount: 1200,
       likedBy: [],
       dislikedBy: [],
     },
@@ -184,7 +179,7 @@ export const posts = [
       "https://media.istockphoto.com/id/1338906512/photo/indian-sweet-laddu.webp?b=1&s=170667a&w=0&k=20&c=3iJ3fupjFhK1QOeVrl-wTPq9byphBGHy7j4WFkMgyLc=",
     content: "In order to write about life first you must live it.",
     likes: {
-      likeCount: 0,
+      likeCount: 2000,
       likedBy: [],
       dislikedBy: [],
     },
