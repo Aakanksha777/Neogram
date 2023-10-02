@@ -2,19 +2,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 1.5em;
+    margin: 1em;
+    border: 1px solid whitesmoke;
     font-family: Arial, sans-serif;
+    /* color: rgb(255 61 100);; */
 }
+
 
 .profile-container img {
-    width: 150px;
-    height: 150px;
+    width: 7vw;
+    height: 7vw;
     border-radius: 50%;
     margin-bottom: 10px;
-    object-fit: cover;
+    object-fit: contain;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
+.edit-form {
+    color: yellowgreen;
+}
 .profile-container h1 {
     font-size: 24px;
     margin-bottom: 5px;

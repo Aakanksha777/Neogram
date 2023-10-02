@@ -28,10 +28,10 @@ const {setUser } = useContext(AuthContext)
   }
   return (
     <div className="App">
-      {/* <div className="topbar-box">
-      <Topbar />
-      </div> */}
-      <button onClick={handleLogout}>Logout</button>
+      <div className="logout-btn-container">
+      <button onClick={handleLogout} className="logout-btn">Logout</button>
+      </div>
+      
       <Routes>
         {/* checking login for these routes. This logic is written inside Wrapper component*/}
         <Route path="/" element={<Wrapper />}>

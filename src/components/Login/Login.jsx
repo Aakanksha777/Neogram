@@ -85,7 +85,13 @@ const Login = () => {
   };
 
   const handleShowPswd = () => {
+    console.log("checked handleShowPswd");
     setShowpswd(!showpswd);
+  };
+
+  const handleGuestMode = () => {
+    console.log("checking guest mode");
+    setLoginData({ username: "bhumi", password: "123" });
   };
 
   return (
@@ -109,7 +115,8 @@ const Login = () => {
             value={loginData.password}
             onChange={handleLoginInput}
             name="password"
-            placeholder={showpswd ? "text" : "password"}
+            placeholder="password"
+            type={showpswd ? "text" : "password"}
             required
           />
           <div className="show-pass-container">
@@ -120,6 +127,7 @@ const Login = () => {
 
           <button className="submit-btn">Login</button>
           {/* guest mode  */}
+          <button onClick={handleGuestMode}>Guest Mode</button>
           <b>
             Don't have Account ?{" "}
             <Link to="/register" className="navigate-signup">

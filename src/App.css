@@ -10,14 +10,20 @@ body, html {
   display: flex;
   flex-direction: column;
   background-color: var(--cl-navy-blue);
-  /* min-height: 100vh; */
   padding-top: 1em;
   color: whitesmoke;
   scroll-behavior: smooth;
 }
 
-.topbar {
-  border: 1px solid blue;
+.logout-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logout-btn {
+  width: 6vw;
+  margin-inline: 1em;
+  background-color: chocolate;
 }
 
 button {

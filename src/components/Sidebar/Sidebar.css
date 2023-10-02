@@ -1,14 +1,17 @@
 .user-container1 {
     display: flex;
     flex-direction: column;
-    background-color: rgb(16, 43, 63);
+    /* background-color: rgb(16, 43, 63); */
+    background-color: transparent;
 }
 
 .user-mapping {
     padding: 1em;
     gap: 50px;
-    margin: 1em;
-    border: 1px dotted pink;
+    margin-bottom: 1em;
+    border-top: 1px dotted pink;
+    border-radius: 1em;
+    border-bottom: 1px dotted pink;
 }
 
 .followings-pic {

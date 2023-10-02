@@ -9,13 +9,10 @@
     align-items: center;
 }
 
-.add__modal .add__post__container {
-    width: 100%;
-    background-color: #f7f7f7;
+.add__modal{
     display: flex;
     padding: 1rem 2rem;
     gap: 10px;
-    max-width: 500px;
 }
 
 .modal__overlay {
@@ -34,4 +31,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
+    color: black;
+    font-size: 22px;
 }

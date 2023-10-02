@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import AuthLogout from "../AuthLogout";
 import Carousel from "../Carousel";
 import Popup from "../Popup/Popup";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 // import Loader from "../loader/Loader";
 
 const Register = () => {
@@ -122,9 +123,9 @@ const Register = () => {
               value={registerData.confirmPassword}
             />
 
-            <div>
-              <span onClick={handleShowPswd} className="show-pswd">
-                &#128065;
+            <div className="show-pass-container">
+              <span onClick={handleShowPswd} className="show-icon">
+                {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
               </span>
             </div>
             <button className="submit-btn">Submit</button>

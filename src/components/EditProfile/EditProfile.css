@@ -1,0 +1,32 @@
+.edit-popup {
+    background-color: lightgray;
+    /* border: 2px solid yellowgreen; */
+    padding: 1.5em;
+    width: 38vw;
+    border-radius: 1vw;
+}
+.edit-profile-header {
+    font-family: cursive, sans-serif;
+    font-size: 22px;
+color: black;
+
+}
+.avatar-btn-container {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+color: black;
+}
+
+.avatar-btn {
+    background-color: rgb(124, 121, 121);
+    font-size: 0.8m;
+    padding: 0.5em;
+    color: whitesmoke;
+}
+
+.popup-submit-btn {
+    background-color: teal;
+    color: whitesmoke;
+}
