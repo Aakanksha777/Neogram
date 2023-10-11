@@ -1,12 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // folders
 import { AuthContext } from "../../context/AuthContext";
 import "./Login.css";
-import Carousel from "../Carousel";
+import Carousel from "../carousel/Carousel";
 // step1 to popup
 import Popup from "../Popup/Popup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import LoginAndRegister from "../loginAndRegister/LoginAndRegister";
 // auth
 
 const Login = () => {
@@ -26,29 +30,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
 
-  // useEffect-popup-2
-
-  // popup-useEffect-2
-  useEffect(() => {
-    let timeOut;
-    if (showPopUp.status) {
-      timeOut = setTimeout(() => {
-        setShowPopUp({
-          status: false,
-          message: "",
-        });
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, [showPopUp]);
-
-  //controllers
-  // popup=function-3
-  const handleShowPopUp = (mes) => {
-    setShowPopUp({ status: true, message: mes });
-  };
+  // toastify
 
   const handleLoginInput = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -71,16 +53,15 @@ const Login = () => {
             JSON.stringify({ ...data.foundUser, token: data.encodedToken })
           ); // waste for now because backend can not store token after refresh
           setUser({ ...data.foundUser, token: data.encodedToken });
-          alert("logged in ");
-          handleShowPopUp(`Logged in`);
+          toast.success("Successfully loggedin");
           navigate("/home");
         } else {
-          handleShowPopUp(`Invalid Credentials.`);
+          alert(`Invalid Credentials.`);
         }
       })
       .catch((e) => {
         console.log(e);
-        handleShowPopUp("Error in creating user.");
+        alert("Error in creating user.");
       });
   };
 
@@ -95,50 +76,44 @@ const Login = () => {
   };
 
   return (
-    <div className="main-login-container">
-      <span style={{ color: "purple" }}>Loading...</span>
-      <div className="background-carousel">
-        <Carousel />
-      </div>
-      <div className="login-container">
-        <form onSubmit={handleLoginSubmit} className="login-form">
-          <h2 className="login-header">Login</h2>
-          <input
-            placeholder="username"
-            required
-            name="username"
-            onChange={handleLoginInput}
-            value={loginData.username}
-          />
+    <LoginAndRegister>
+      <form onSubmit={handleLoginSubmit} className="login-form">
+        <h2 className="login-header">Login</h2>
+        <input
+          placeholder="username"
+          required
+          name="username"
+          onChange={handleLoginInput}
+          value={loginData.username}
+        />
 
-          <input
-            value={loginData.password}
-            onChange={handleLoginInput}
-            name="password"
-            placeholder="password"
-            type={showpswd ? "text" : "password"}
-            required
-          />
-          <div className="show-pass-container">
-            <span onClick={handleShowPswd} className="show-icon">
-              {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
-            </span>
-          </div>
+        <input
+          value={loginData.password}
+          onChange={handleLoginInput}
+          name="password"
+          placeholder="password"
+          type={showpswd ? "text" : "password"}
+          required
+        />
+        <div className="show-pass-container">
+          <span onClick={handleShowPswd} className="show-icon">
+            {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
+          </span>
+        </div>
 
-          <button className="submit-btn">Login</button>
-          {/* guest mode  */}
-          <button onClick={handleGuestMode}>Guest Mode</button>
-          <b>
-            Don't have Account ?{" "}
-            <Link to="/register" className="navigate-signup">
-              {" "}
-              Signup{" "}
-            </Link>
-          </b>
-          {showPopUp.status && <Popup>{showPopUp.message}</Popup>}
-        </form>
-      </div>
-    </div>
+        <button className="submit-btn">Login</button>
+        {/* guest mode  */}
+        <button onClick={handleGuestMode}>Guest Mode</button>
+        <b>
+          Don't have Account ?{" "}
+          <Link to="/register" className="navigate-signup">
+            {" "}
+            Signup{" "}
+          </Link>
+        </b>
+        <ToastContainer />
+      </form>
+    </LoginAndRegister>
   );
 };
 

@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 body, html {
   overflow: auto;
@@ -10,14 +11,8 @@ body, html {
   display: flex;
   flex-direction: column;
   background-color: var(--cl-navy-blue);
-  padding-top: 1em;
   color: whitesmoke;
   scroll-behavior: smooth;
-}
-
-.logout-btn-container {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .logout-btn {

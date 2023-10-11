@@ -24,17 +24,27 @@ const Allposts = ({ allPosts }) => {
   const handleClose = () => {
     setShowEditPost(false);
   };
+  // /api/users/bookmark/:postId
+  // /api/users/remove-bookmark/:postId
+
   const handleBookmark = (item, isBookmarked) => {
+    debugger;
     const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${
       item._id
     }`;
+
+    // Create the request payload based on whether it's bookmarking or removing bookmark
+    const requestBody = isBookmarked
+      ? { action: "remove-bookmark" }
+      : { action: "bookmark" };
+
     fetch(url, {
       method: "post",
       headers: {
         "content-type": "application/json",
-        authorization: user.token,
+        authorization: user.Token,
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify(requestBody), // Send the proper request payload
     })
       .then((res) => res.json())
       .then((data) => {
@@ -44,27 +54,51 @@ const Allposts = ({ allPosts }) => {
       })
       .catch((e) => console.log("Error is ", e));
   };
-  const handleEditModal = (item) => {
-    setEditPostData(item);
-    setShowEditPost(true);
-  };
+
+  // const handleLike = (item, isAlreadyLiked) => {
+  //   const url = `/api/posts/${isAlreadyLiked ? "dislike" : "like"}/${item._id}`;
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //       authorization: user.token,
+  //     },
+  //     body: JSON.stringify({}),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (!data.errors) {
+  //         setAllPosts(data.posts);
+  //       }
+  //     });
+  // };
 
   const handleLike = (item, isAlreadyLiked) => {
+    debugger;
+    console.log("item:", item);
+    console.log("isAlreadyLiked:", isAlreadyLiked);
+
     const url = `/api/posts/${isAlreadyLiked ? "dislike" : "like"}/${item._id}`;
+    const requestBody = isAlreadyLiked
+      ? { action: "dislike" }
+      : { action: "like" };
+
     fetch(url, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: user.token,
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify(requestBody),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log("Response data:", data);
         if (!data.errors) {
           setAllPosts(data.posts);
         }
-      });
+      })
+      .catch((e) => console.log("Error:", e));
   };
 
   const handleDelete = (item) => {
@@ -91,31 +125,40 @@ const Allposts = ({ allPosts }) => {
         allPosts.map((ele) => (
           <div className="post-container" key={ele._id}>
             <div className="user-time">
-              <b className="user-time">
-                {ele.username} - <span className="time">{ele.createdAt}</span>
+              <b>
+                {ele.username} -{" "}
+                <span className="time">{ele.createdAt} username</span>
               </b>
             </div>
             <img src={ele.image} alt="posts" className="children-post-image" />
-            <p>{ele.content}</p>
+            <p>{ele.content} content</p>
+
             <div className="post-like-bookmark">
+              {/* Check if the current user has already liked the post */}
               {ele.likes.likedBy.some(
                 (person) => person.username === user.username
               ) ? (
+                // Display filled like icon if the user has liked the post
                 <AiFillLike onClick={() => handleLike(ele, true)} />
               ) : (
+                // Display outlined like icon if the user hasn't liked the post
                 <AiOutlineLike onClick={() => handleLike(ele, false)} />
               )}
+              {/* Check if the post is bookmarked by the current user */}
               {user.bookmarks.some((markedPost) => markedPost.id === ele.id) ? (
+                // Display filled bookmark icon if the post is bookmarked
                 <BsFillBookmarkCheckFill
                   onClick={() => handleBookmark(ele, true)}
                 />
               ) : (
+                // Display empty bookmark icon if the post is not bookmarked
                 <BsBookmarkDash onClick={() => handleBookmark(ele, false)} />
               )}
+              {/* Display delete icon if the current user is the author of the post */}
               {ele.username === user.username && (
                 <>
                   <AiFillDelete onClick={() => handleDelete(ele)} />
-                  <AiFillEdit onClick={() => handleEditModal(ele)} />
+                  {/* <AiFillEdit onClick={() => handleEditModal(ele)} /> */}
                 </>
               )}
             </div>

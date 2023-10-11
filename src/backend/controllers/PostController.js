@@ -1,5 +1,5 @@
 import { Response } from "miragejs";
-import { formatDate, requiresAuth } from "../utils/authUtils";
+import { requiresAuth , currentDate, updatedDate} from "../utils/authUtils";
 import { v4 as uuid } from "uuid";
 
 /**
@@ -89,8 +89,8 @@ export const createPostHandler = function (schema, request) {
         dislikedBy: [],
       },
       username: user.username,
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
+      createdAt: currentDate(),
+      updatedAt: updatedDate(),
       
     };
     // without spread operator
@@ -189,7 +189,7 @@ export const likePostHandler = function (schema, request) {
     );
     post.likes.likeCount += 1;
     post.likes.likedBy.push(user);
-    this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+    this.db.posts.update({ _id: postId }, { ...post, updatedAt: updatedDate() });
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
@@ -243,7 +243,7 @@ export const dislikePostHandler = function (schema, request) {
     );
     post.likes.dislikedBy.push(user);
     post = { ...post, likes: { ...post.likes, likedBy: updatedLikedBy } };
-    this.db.posts.update({ _id: postId }, { ...post, updatedAt: formatDate() });
+    this.db.posts.update({ _id: postId }, { ...post, updatedAt: updatedDate() });
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(

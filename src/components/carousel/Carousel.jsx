@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import image1 from "../assets/igor-miske-bsMFZ1957Zg-unsplash.jpg";
-import image2 from "../assets/sam-mcnamara-p0ZvBVpW3KY-unsplash.jpg";
-import image3 from "../assets/signup-side-image.jpg";
-import image4 from "../assets/simon-maage-tXiMrX3Gc-g-unsplash.jpg";
+import image1 from "../../assets/igor-miske-bsMFZ1957Zg-unsplash.jpg";
+import image2 from "../../assets/sam-mcnamara-p0ZvBVpW3KY-unsplash.jpg";
+import image3 from "../../assets/signup-side-image.jpg";
+import image4 from "../../assets/simon-maage-tXiMrX3Gc-g-unsplash.jpg";
+import "./Carousel.css";
 
 const Carousel = () => {
   const imageList = [image1, image2, image3, image4];
@@ -17,9 +18,11 @@ const Carousel = () => {
   }, [imageList.length]);
 
   return (
-    <div>
-      <img src={imageList[currentImage]} alt="signup" className="side-image" />
-    </div>
+    <img
+      src={imageList[currentImage]}
+      alt="signup"
+      className="carousel-image"
+    />
   );
 };
 

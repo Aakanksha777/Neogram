@@ -1,18 +1,28 @@
 import React, { useContext, useState } from "react";
+
+// files
 import "./PostForm.css";
+
+// context
 import { PostContext } from "../../context/PostContext";
 import { AuthContext } from "../../context/AuthContext";
+import Allposts from "../Allposts/Allposts";
 
+// main-function
 const PostForm = ({ postData, onClose }) => {
+  // useState for Creating Post
+  // postData ????
   const [createdPost, setCreatedPost] = useState(
     postData || {
       content: "",
       image: "",
     }
   );
+  // getting USER && Allposts
   const { user } = useContext(AuthContext);
   const { setAllPosts } = useContext(PostContext);
 
+  // form submit function
   const handlePostSubmit = (e) => {
     e.preventDefault();
     const url = `/api/posts${postData ? "/edit/" + postData._id : ""}`;

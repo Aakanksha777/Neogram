@@ -1,19 +1,29 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { useLogout } from "../../Actions/useLogout";
+// files
 import Navbar from "../Navbar/Navbar";
 import "./Wrapper.css";
 import User from "../Sidebar/Sidebar";
-import { Navigate, Outlet } from "react-router-dom";
+
+// context
 import { AuthContext } from "../../context/AuthContext";
 
 const Wrapper = () => {
-  // import auth context
-
+  //  useContext-USER
   const { user } = useContext(AuthContext);
+  const { handleLogout } = useLogout();
 
+  //  If User.Token exists return Homepage , else navigate to Loginpage
   return user.token ? (
     <div>
       {/* leftbar + main-section + rightbar */}
       <div className="wrapper-container">
+        <div className="logout-btn-container">
+          <button onClick={handleLogout} className="logout-btn">
+            Logout
+          </button>
+        </div>
         <Navbar />
         <main className="wrappper-main-children">
           <Outlet />

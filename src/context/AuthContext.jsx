@@ -1,20 +1,25 @@
 import React, { createContext, useEffect, useState } from "react";
 
-export const AuthContext = createContext(); //create context
+//creating context
+export const AuthContext = createContext();
 
+// AuthProvider-function
 export function AuthProvider({ children }) {
+  // useState for "USER"
   const [user, setUser] = useState({});
 
+  // useEffect for checking whether User is already exists or not. if exists- setUser(userToken), else [].
   useEffect(() => {
-    console.log("this is context empty dependeny use Effect");
+    console.log("User is Exists already.");
     const userExist = JSON.parse(localStorage.getItem("user"))?.token;
     if (!user.token && userExist) {
       setUser(userExist);
     }
   }, []);
 
+  // useEffect for storing user in local storage.
   useEffect(() => {
-    console.log("this is context yser dependeny use Effect");
+    console.log("storing user in local storage.");
     user && localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 

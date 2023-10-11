@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { formatDate } from "../utils/authUtils";
+import { formatDate , updatedDate} from "../utils/authUtils";
 
 export const posts = [
   {
@@ -14,8 +14,8 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarsh",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    updatedAt: updatedDate(),
     comments: [
       {
         _id: uuid(),
@@ -70,8 +70,8 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('01-01-2022'),  new Date('31-12-2023')),
+    updatedAt: updatedDate(),
   },
   {
     _id: uuid(),
@@ -106,8 +106,8 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    updatedAt: updatedDate(),
   },
   {
     _id: uuid(),
@@ -142,8 +142,8 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    updatedAt: updatedDate(),
   },
   {
     _id: uuid(),
@@ -156,8 +156,8 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Aakanksha",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    updatedAt: updatedDate(),
   },
   {
     _id: uuid(),
@@ -170,8 +170,8 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Kajal",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('2022-01-01'),  new Date('2023-12-31')),
+    updatedAt: updatedDate(),
   },
   {
     _id: uuid(),
@@ -184,7 +184,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Surya",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
+    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    updatedAt: updatedDate(),
   },
 ];

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Register.css";
 import { useNavigate, Link } from "react-router-dom";
 import AuthLogout from "../AuthLogout";
-import Carousel from "../Carousel";
+import Carousel from "../carousel/Carousel";
 import Popup from "../Popup/Popup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import LoginAndRegister from "../loginAndRegister/LoginAndRegister";
 // import Loader from "../loader/Loader";
 
 const Register = () => {
@@ -53,7 +54,6 @@ const Register = () => {
 
   const handleregisterSubmit = (e) => {
     e.preventDefault();
-    debugger;
     if (registerData.password !== registerData.confirmPassword) {
       handleShowPopUp("Passwords do not match.");
       return;
@@ -67,6 +67,7 @@ const Register = () => {
         if (data.encodedToken) {
           localStorage.setItem("encodedToken", data.encodedToken);
           console.log("Success: Data has an encodedToken");
+          alert("register");
           handleShowPopUp("Success");
           navigate("/login");
         } else {
@@ -85,64 +86,57 @@ const Register = () => {
   };
 
   return (
-    <>
-      <div className="main-register-container">
-        <div className="background-carousel">
-          <Carousel />
-        </div>
-        <div className="form-div">
-          <form className="register-container" onSubmit={handleregisterSubmit}>
-            <h2 className="signup-heading">Signup</h2>
-            {/* <Loader /> */}
-            <input
-              placeholder="username"
-              required
-              name="username"
-              onChange={handleLoginInput}
-              value={registerData.username}
-            />
-            <input
-              placeholder="email"
-              type="email"
-              name="email"
-              onChange={handleLoginInput}
-              value={registerData.email}
-            />
-            <input
-              placeholder="password"
-              type={showpswd ? "text" : "password"}
-              name="password"
-              onChange={handleLoginInput}
-              value={registerData.password}
-            />
-            <input
-              placeholder="confirm password"
-              type={showpswd ? "text" : "password"}
-              name="confirmPassword"
-              onChange={handleLoginInput}
-              value={registerData.confirmPassword}
-            />
+    <LoginAndRegister>
+      <form className="login-form" onSubmit={handleregisterSubmit}>
+        <h2 className="signup-heading">Signup</h2>
+        {/* <Loader /> */}
+        <input
+          placeholder="username"
+          required
+          name="username"
+          onChange={handleLoginInput}
+          value={registerData.username}
+        />
+        <input
+          placeholder="email"
+          type="email"
+          name="email"
+          onChange={handleLoginInput}
+          value={registerData.email}
+        />
+        <input
+          placeholder="password"
+          type={showpswd ? "text" : "password"}
+          name="password"
+          onChange={handleLoginInput}
+          value={registerData.password}
+        />
+        <input
+          placeholder="confirm password"
+          type={showpswd ? "text" : "password"}
+          name="confirmPassword"
+          onChange={handleLoginInput}
+          value={registerData.confirmPassword}
+        />
 
-            <div className="show-pass-container">
-              <span onClick={handleShowPswd} className="show-icon">
-                {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
-              </span>
-            </div>
-            <button className="submit-btn">Submit</button>
-            <AuthLogout />
-
-            <b>
-              Already have Account ?{" "}
-              <Link to="/" className="login-link">
-                {" "}
-                Login{" "}
-              </Link>
-            </b>
-            {showPopUp.status && <Popup>{showPopUp.message}</Popup>}
-          </form>
+        <div className="show-pass-container">
+          <span onClick={handleShowPswd} className="show-icon">
+            {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
+          </span>
         </div>
-      </div>
-    </>
+        <button className="submit-btn">Submit</button>
+        <AuthLogout />
+
+        <b>
+          Already have Account ?{" "}
+          <Link to="/" className="login-link">
+            {" "}
+            Login{" "}
+          </Link>
+        </b>
+        {showPopUp.status && <Popup>{showPopUp.message}</Popup>}
+      </form>
+    </LoginAndRegister>
   );
 };
 
