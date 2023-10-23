@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate, Link } from "react-router-dom";
-import AuthLogout from "../AuthLogout";
-import Carousel from "../carousel/Carousel";
-import Popup from "../Popup/Popup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import LoginAndRegister from "../loginAndRegister/LoginAndRegister";
 // import Loader from "../loader/Loader";
 
 const Register = () => {
-  // popup-state-1
-  const [showPopUp, setShowPopUp] = useState({
-    status: false,
-    message: "",
-  });
-
   const [registerData, setRegisterData] = useState({
     username: "",
     email: "",
@@ -24,29 +15,6 @@ const Register = () => {
   const [showpswd, setShowpswd] = useState(false);
   const navigate = useNavigate();
 
-  // popup-useEffect-2
-  useEffect(() => {
-    let timeOut;
-    if (showPopUp.status) {
-      timeOut = setTimeout(() => {
-        setShowPopUp({
-          status: false,
-          message: "",
-        });
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, [showPopUp]);
-
-  // controllers
-
-  // popup=function-3
-  const handleShowPopUp = (mes) => {
-    setShowPopUp({ status: true, message: mes });
-  };
-
   const handleLoginInput = (e) => {
     e.preventDefault();
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
@@ -55,7 +23,6 @@ const Register = () => {
   const handleregisterSubmit = (e) => {
     e.preventDefault();
     if (registerData.password !== registerData.confirmPassword) {
-      handleShowPopUp("Passwords do not match.");
       return;
     }
     fetch("/api/auth/signup", {
@@ -68,16 +35,13 @@ const Register = () => {
           localStorage.setItem("encodedToken", data.encodedToken);
           console.log("Success: Data has an encodedToken");
           alert("register");
-          handleShowPopUp("Success");
           navigate("/login");
         } else {
           console.log("User already exists");
-          handleShowPopUp(`User Already Exists.`);
         }
       })
       .catch((err) => {
         console.error("Error creating user:", err);
-        handleShowPopUp("Error in creating user.");
       });
   };
 
@@ -89,7 +53,6 @@ const Register = () => {
     <LoginAndRegister>
       <form className="login-form" onSubmit={handleregisterSubmit}>
         <h2 className="signup-heading">Signup</h2>
-        {/* <Loader /> */}
         <input
           placeholder="username"
           required
@@ -125,8 +88,6 @@ const Register = () => {
           </span>
         </div>
         <button className="submit-btn">Submit</button>
-        <AuthLogout />
-
         <b>
           Already have Account ?{" "}
           <Link to="/" className="login-link">
@@ -134,7 +95,6 @@ const Register = () => {
             Login{" "}
           </Link>
         </b>
-        {showPopUp.status && <Popup>{showPopUp.message}</Popup>}
       </form>
     </LoginAndRegister>
   );

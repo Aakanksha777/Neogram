@@ -1,23 +1,19 @@
-* {
-    margin: 0;
-    padding: 0;
-    }
-    .main-login-container {
-        display: flex;
-        height: 90vh;
-        box-sizing: border-box;
-        color: black;
-    }
-    
-    .login-container {
-        display: flex;
-        align-items: center;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        translate: -50% -50%;
-    }
+.main-login-container {
+    display: flex;
+    height: 90vh;
+    box-sizing: border-box;
+    color: black;
+}
 
+.login-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background-color: royalblue;
+}
 .login-form {
     display: flex;
     flex-direction: column;
@@ -30,7 +26,8 @@
     padding-block: 2em;
     border-radius: 10px 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(158, 157, 157);
+    /* background-color: rgb(158, 157, 157);\
+     */
     opacity: 0.8;
 
 }

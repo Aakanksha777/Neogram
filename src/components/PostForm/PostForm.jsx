@@ -6,7 +6,6 @@ import "./PostForm.css";
 // context
 import { PostContext } from "../../context/PostContext";
 import { AuthContext } from "../../context/AuthContext";
-import Allposts from "../Allposts/Allposts";
 
 // main-function
 const PostForm = ({ postData, onClose }) => {
@@ -50,9 +49,9 @@ const PostForm = ({ postData, onClose }) => {
   return (
     <div>
       <div className="post-form-container">
-        <form className="post-form-text-btn" onSubmit={handlePostSubmit}>
+        <form className="post-form-text-btn " onSubmit={handlePostSubmit}>
           <textarea
-            className="post-form-textarea"
+            className="bg-color post-textarea"
             placeholder="share your thoughts !"
             onChange={handleTextarea}
             value={createdPost.content}
@@ -60,7 +59,7 @@ const PostForm = ({ postData, onClose }) => {
           />
 
           <input
-            className="post-form-textarea"
+            className="bg-color post-input"
             type="url"
             placeholder="image url"
             onChange={handleTextarea}

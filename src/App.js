@@ -12,9 +12,6 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Wrapper from "./components/Wrapper/Wrapper";
 
-//Actions
-// import { useLogout } from "./Actions/useLogout";
-
 //main-component
 function App() {
 

@@ -11,11 +11,12 @@
     color: rgb(27, 27, 27);
 }
 
-input {
+.form-input {
     padding: 0.5em;
     margin: 0.6em;
     border-radius: 5px;
     border: 0.2px solid gray;
+    background-color: red;
 }
 
 .login-link {

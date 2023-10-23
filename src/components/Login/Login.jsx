@@ -1,25 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// folders
-import { AuthContext } from "../../context/AuthContext";
-import "./Login.css";
-import Carousel from "../carousel/Carousel";
-// step1 to popup
-import Popup from "../Popup/Popup";
+
+// icons
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
+// files
+import "./Login.css";
 import LoginAndRegister from "../loginAndRegister/LoginAndRegister";
-// auth
+
+// context
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  // popup-state-1
-  const [showPopUp, setShowPopUp] = useState({
-    status: false,
-    message: "",
-  });
-
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -29,8 +23,6 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
-
-  // toastify
 
   const handleLoginInput = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -66,13 +58,12 @@ const Login = () => {
   };
 
   const handleShowPswd = () => {
-    console.log("checked handleShowPswd");
     setShowpswd(!showpswd);
   };
 
   const handleGuestMode = () => {
-    console.log("checking guest mode");
     setLoginData({ username: "bhumi", password: "123" });
+    toast.success("Successfully Guest loggedin");
   };
 
   return (

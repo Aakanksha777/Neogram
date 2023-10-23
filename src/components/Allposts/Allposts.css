@@ -1,7 +1,12 @@
 .post-container{
-    background-color: rgb(16, 43, 63);
-    /* border: 2px solid yellowgreen; */
-    margin: 2em;
-    padding: 1.5em;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    padding: 1em;
+    margin-block: 1em;
+    border: 1px solid whitesmoke;
+}
+
+.children-post-image {
+    padding: 1em;
+    border-radius: 0.3em;
+    height: 200%;
+    width: 80%;
 }

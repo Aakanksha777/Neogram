@@ -16,14 +16,14 @@ const Wrapper = () => {
 
   //  If User.Token exists return Homepage , else navigate to Loginpage
   return user.token ? (
-    <div>
+    <div className="page-layout">
+      <div className="logout-btn-container">
+        <button onClick={handleLogout} className="logout-btn">
+          Logout
+        </button>
+      </div>
       {/* leftbar + main-section + rightbar */}
       <div className="wrapper-container">
-        <div className="logout-btn-container">
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
-          </button>
-        </div>
         <Navbar />
         <main className="wrappper-main-children">
           <Outlet />

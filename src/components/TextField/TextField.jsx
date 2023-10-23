@@ -19,12 +19,6 @@ export const TextField = ({
         {...props}
       />
       {children ? children : null}
-
-      {/* {label && (
-        <label htmlFor={id ? id : inputName} className="form__label">
-          This is label
-        </label>
-      )} */}
     </div>
   );
 };

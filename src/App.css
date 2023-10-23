@@ -10,7 +10,7 @@ body, html {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: var(--cl-navy-blue);
+  background-color: black;
   color: whitesmoke;
   scroll-behavior: smooth;
 }
@@ -18,9 +18,10 @@ body, html {
 .logout-btn {
   width: 6vw;
   margin-inline: 1em;
-  background-color: chocolate;
+  background-color: royalblue;
 }
 
 button {
-  background-color: rgb(255 61 100);
+  background-color: rosybrown;
+
 }

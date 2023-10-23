@@ -1,14 +1,9 @@
-.homepage {
-    padding: 1em;
-    /* border: 2px solid whitesmoke; */
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-}
 .children-posts {
-    border: 2px solid pink;
+    border: 2px solid gray;
 }
 
 .children-post-image {
-    width: 25vw;
+    width: 100%;
 }
 
 .time {
@@ -41,11 +36,10 @@
 }
 
 .filter-btns {
-    margin: 1em;
+    margin-block: 1em;
     padding: 1em;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(16, 43, 63);
 
 }
 

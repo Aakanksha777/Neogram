@@ -1,22 +1,31 @@
-.post-form-container {
-    display: flex;
-    background-color: rgb(16, 43, 63);
+.bg-color {
+    background-color: black;
     color: whitesmoke;
+    border: 0.1px solid gray;
+    background-color: black;
+    /* color: rgb(171, 230, 11);
+    color: rosybrown;
+    color: whitesmoke; */
 }
-.post-form-textarea {
-    background-color: rgb(16, 43, 63);
-    color: whitesmoke;
-    border: none;
+.post-form-container {
+    display: flex; 
+}
+.post-input {
+    margin-block: 0.8em;
+    padding: 0.5em;
+    border-radius: 0.4em;
 }
 .post-form-btn {
-    width: 30%;
     margin-inline: auto;
 }
 .post-form-text-btn {
     display: flex;
     width: 100%;
     flex-direction: column;
-    padding: 2em;
+    padding: 1em;
+}
+.post-textarea {
+    height: 10vh;
 }
  
 button, .post-form-btn {

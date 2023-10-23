@@ -24,9 +24,6 @@ const Allposts = ({ allPosts }) => {
   const handleClose = () => {
     setShowEditPost(false);
   };
-  // /api/users/bookmark/:postId
-  // /api/users/remove-bookmark/:postId
-
   const handleBookmark = (item, isBookmarked) => {
     debugger;
     const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${
