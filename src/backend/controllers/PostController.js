@@ -1,5 +1,5 @@
 import { Response } from "miragejs";
-import { requiresAuth , currentDate, updatedDate} from "../utils/authUtils";
+import { requiresAuth, currentDate, updatedDate } from "../utils/authUtils";
 import { v4 as uuid } from "uuid";
 
 /**
@@ -77,10 +77,10 @@ export const createPostHandler = function (schema, request) {
         }
       );
     }
-    const { postData } = JSON.parse(request.requestBody);  //{image:"",content:""}
+    const { postData } = JSON.parse(request.requestBody); //{image:"",content:""}
     const post = {
       _id: uuid(),
-       ...postData,  //image:"",content:"" 
+      ...postData, //image:"",content:""
       // image :postData.image,
       // content : postData.content,
       likes: {
@@ -91,12 +91,10 @@ export const createPostHandler = function (schema, request) {
       username: user.username,
       createdAt: currentDate(),
       updatedAt: updatedDate(),
-      
     };
     // without spread operator
     // post.image = postData.image;
     // post.content = postData.content
-
 
     this.db.posts.insert(post);
     return new Response(201, {}, { posts: this.db.posts });
@@ -177,7 +175,7 @@ export const likePostHandler = function (schema, request) {
     }
     const postId = request.params.postId;
     const post = schema.posts.findBy({ _id: postId }).attrs;
-    if (post.likes.likedBy.some((currUser) => currUser._id === user._id)) {
+    if (post.likes.likedBy.some((currUserId) => currUserId === user._id)) {
       return new Response(
         400,
         {},
@@ -185,11 +183,14 @@ export const likePostHandler = function (schema, request) {
       );
     }
     post.likes.dislikedBy = post.likes.dislikedBy.filter(
-      (currUser) => currUser._id !== user._id
+      (currUserId) => currUserId !== user._id
     );
     post.likes.likeCount += 1;
-    post.likes.likedBy.push(user);
-    this.db.posts.update({ _id: postId }, { ...post, updatedAt: updatedDate() });
+    post.likes.likedBy.push(user._id);
+    this.db.posts.update(
+      { _id: postId },
+      { ...post, updatedAt: updatedDate() }
+    );
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
@@ -230,7 +231,7 @@ export const dislikePostHandler = function (schema, request) {
         { errors: ["Cannot decrement like less than 0."] }
       );
     }
-    if (post.likes.dislikedBy.some((currUser) => currUser._id === user._id)) {
+    if (post.likes.dislikedBy.some((currUserId) => currUserId === user._id)) {
       return new Response(
         400,
         {},
@@ -239,11 +240,14 @@ export const dislikePostHandler = function (schema, request) {
     }
     post.likes.likeCount -= 1;
     const updatedLikedBy = post.likes.likedBy.filter(
-      (currUser) => currUser._id !== user._id
+      (currUserId) => currUserId !== user._id
     );
-    post.likes.dislikedBy.push(user);
+    post.likes.dislikedBy.push(user._id);
     post = { ...post, likes: { ...post.likes, likedBy: updatedLikedBy } };
-    this.db.posts.update({ _id: postId }, { ...post, updatedAt: updatedDate() });
+    this.db.posts.update(
+      { _id: postId },
+      { ...post, updatedAt: updatedDate() }
+    );
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(
