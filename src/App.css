@@ -10,8 +10,8 @@ body, html {
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: black;
-  color: whitesmoke;
+  /* background-color: black; */
+  /* color: whitesmoke; */
   scroll-behavior: smooth;
 }
 
@@ -19,9 +19,4 @@ body, html {
   width: 6vw;
   margin-inline: 1em;
   background-color: royalblue;
-}
-
-button {
-  background-color: rosybrown;
-
 }

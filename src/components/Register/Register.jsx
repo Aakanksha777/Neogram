@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "./Register.css";
+// import "./Register.css";
+import "../Login/Login.css";
 import { useNavigate, Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import LoginAndRegister from "../loginAndRegister/LoginAndRegister";
-// import Loader from "../loader/Loader";
+import character from "../../assets/login-character.jpg";
+import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -34,7 +35,7 @@ const Register = () => {
         if (data.encodedToken) {
           localStorage.setItem("encodedToken", data.encodedToken);
           console.log("Success: Data has an encodedToken");
-          alert("register");
+          toast.success("Successfully Registered");
           navigate("/login");
         } else {
           console.log("User already exists");
@@ -50,53 +51,72 @@ const Register = () => {
   };
 
   return (
-    <LoginAndRegister>
-      <form className="login-form" onSubmit={handleregisterSubmit}>
-        <h2 className="signup-heading">Signup</h2>
-        <input
-          placeholder="username"
-          required
-          name="username"
-          onChange={handleLoginInput}
-          value={registerData.username}
-        />
-        <input
-          placeholder="email"
-          type="email"
-          name="email"
-          onChange={handleLoginInput}
-          value={registerData.email}
-        />
-        <input
-          placeholder="password"
-          type={showpswd ? "text" : "password"}
-          name="password"
-          onChange={handleLoginInput}
-          value={registerData.password}
-        />
-        <input
-          placeholder="confirm password"
-          type={showpswd ? "text" : "password"}
-          name="confirmPassword"
-          onChange={handleLoginInput}
-          value={registerData.confirmPassword}
-        />
-
-        <div className="show-pass-container">
-          <span onClick={handleShowPswd} className="show-icon">
-            {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
-          </span>
+    <div className="login-outer">
+      <div className="login-container">
+        {/* UPPER  */}
+        <div className="login-upper">
+          <h2 className="login-header">Signup</h2>
         </div>
-        <button className="submit-btn">Submit</button>
-        <b>
-          Already have Account ?{" "}
-          <Link to="/" className="login-link">
-            {" "}
-            Login{" "}
-          </Link>
-        </b>
-      </form>
-    </LoginAndRegister>
+
+        {/* LOWER  */}
+        <div className="login-bottom">
+          <div className="login-img-container">
+            <img src={character} alt="login" className="login-img" />
+          </div>
+
+          <form onSubmit={handleregisterSubmit} className="login-form">
+            <input
+              placeholder="username"
+              required
+              name="username"
+              onChange={handleLoginInput}
+              value={registerData.username}
+              className="form-inputs"
+            />
+
+            <input
+              placeholder="email"
+              type="email"
+              name="email"
+              onChange={handleLoginInput}
+              value={registerData.email}
+              className="form-inputs"
+            />
+            <input
+              placeholder="password"
+              type={showpswd ? "text" : "password"}
+              name="password"
+              onChange={handleLoginInput}
+              value={registerData.password}
+              className="form-inputs"
+            />
+            <input
+              placeholder="confirm password"
+              type={showpswd ? "text" : "password"}
+              name="confirmPassword"
+              onChange={handleLoginInput}
+              value={registerData.confirmPassword}
+              className="form-inputs"
+            />
+            <div className="show-pass-container">
+              <span onClick={handleShowPswd} className="show-icon">
+                {showpswd ? <AiFillEyeInvisible /> : <AiFillEye />}
+              </span>
+            </div>
+
+            <button className="login-submit-btn">Signup</button>
+            <p>
+              Already have Account ?{" "}
+              <Link to="/login" className="navigate-signup">
+                {" "}
+                Login{" "}
+              </Link>
+            </p>
+            <ToastContainer />
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

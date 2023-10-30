@@ -6,10 +6,10 @@
 
 .navbar-links {
     text-decoration: none;
-    padding: 0.7em;
+    padding: 0.5em;
     font-size: 1.3rem;
     display: flex;
-    color: whitesmoke;
+    color: black;
 }
 
 .navlink-text {

@@ -25,9 +25,9 @@ const Allposts = ({ allPosts }) => {
     setShowEditPost(false);
   };
   const handleBookmark = (item, isBookmarked) => {
-    debugger;
-    const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${item._id
-      }`;
+    const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${
+      item._id
+    }`;
 
     // Create the request payload based on whether it's bookmarking or removing bookmark
     const requestBody = isBookmarked
@@ -131,9 +131,7 @@ const Allposts = ({ allPosts }) => {
 
             <div className="post-like-bookmark">
               {/* Check if the current user has already liked the post */}
-              {ele.likes.likedBy.some(
-                (personId) => personId === user._id
-              ) ? (
+              {ele.likes.likedBy.some((personId) => personId === user._id) ? (
                 // Display filled like icon if the user has liked the post
                 <AiFillLike onClick={() => handleLike(ele, true)} />
               ) : (

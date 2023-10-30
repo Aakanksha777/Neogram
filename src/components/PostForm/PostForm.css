@@ -1,13 +1,8 @@
 .bg-color {
-    background-color: black;
-    color: whitesmoke;
     border: 0.1px solid gray;
-    background-color: black;
-    /* color: rgb(171, 230, 11);
-    color: rosybrown;
-    color: whitesmoke; */
 }
 .post-form-container {
+    background-color: lightgray;
     display: flex; 
 }
 .post-input {
@@ -28,7 +23,7 @@
     height: 10vh;
 }
  
-button, .post-form-btn {
+.post-form-btn {
     padding: 0.7em;
     border: 1px solid whitesmke;
     border-radius: 0.5em;
