@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 // files
 import "./PostForm.css";
@@ -24,6 +25,7 @@ const PostForm = ({ postData, onClose }) => {
   // form submit function
   const handlePostSubmit = (e) => {
     e.preventDefault();
+    debugger;
     const url = `/api/posts${postData ? "/edit/" + postData._id : ""}`;
     fetch(url, {
       method: "post",
@@ -36,6 +38,7 @@ const PostForm = ({ postData, onClose }) => {
       .then((res) => res.json())
       .then((data) => {
         setAllPosts(data.posts);
+        toast.success("Post created");
         setCreatedPost({ content: "", image: "" });
         onClose && onClose();
       })
@@ -57,7 +60,7 @@ const PostForm = ({ postData, onClose }) => {
             value={createdPost.content}
             name="content"
           />
-
+          <hr />
           <input
             className="bg-color post-input"
             type="url"
@@ -68,6 +71,7 @@ const PostForm = ({ postData, onClose }) => {
           />
           <button className="post-form-btn">Share</button>
         </form>
+        <ToastContainer autoClose={2000} />
       </div>
     </div>
   );

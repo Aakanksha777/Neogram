@@ -9,6 +9,7 @@ import EditProfile from "../../components/EditProfile/EditProfile";
 
 const Profilepage = () => {
   // context
+  // using context we're getting profile of user : github, role, username etc.
   const { user } = useContext(AuthContext);
   // states
   const [usersPosts, setUserPosts] = useState([]);
@@ -20,6 +21,8 @@ const Profilepage = () => {
     portfolio_url: user.portfolio_url || "",
     image: user.image,
   };
+
+  // To get user's post through API.
   useEffect(() => {
     fetch(`/api/posts/user/${user.username}`, {
       method: "GET",
@@ -28,6 +31,7 @@ const Profilepage = () => {
       .then((data) => {
         if (!data.errors) {
           setUserPosts(data.posts);
+          console.log("profile page getting data : ", data.posts);
         }
       })
       .catch((e) => console.log("Error is ", e));
@@ -58,9 +62,10 @@ const Profilepage = () => {
 
         <p>
           GitHub:{" "}
-          <a href={user.github_Url} target="_blank" rel="noopener noreferrer">
+          {/* <a href={user.github_Url} target="_blank" rel="noopener noreferrer">
             {user.github_Url}
-          </a>
+          </a> */}
+          {user.github_Url}
         </p>
       </div>
       <div className="user-posts">

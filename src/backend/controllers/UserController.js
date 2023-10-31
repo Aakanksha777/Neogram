@@ -42,6 +42,7 @@ export const getUserHandler = function (schema, request) {
  * */
 
 export const editUserHandler = function (schema, request) {
+  debugger;
   let user = requiresAuth.call(this, request);
   try {
     if (!user) {

@@ -1,6 +1,26 @@
 .wrapper-container {
     display: flex;
     justify-content: space-evenly;
+    
+}
+
+.login-upper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 1em;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+.social-logo{
+    width: 70px;
+}
+
+.social-logo-img{
+   width: 90%;
 }
 
 .wrappper-main-children {

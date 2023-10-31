@@ -11,7 +11,8 @@ const Homepage = () => {
   const { user } = useContext(AuthContext);
   const { allPosts } = useContext(PostContext);
 
-  const { filterArray, handleTrending, handleLatestPosts, setFilterArray } = HomepageAction();
+  const { filterArray, handleTrending, handleLatestPosts, setFilterArray } =
+    HomepageAction();
 
   useEffect(() => {
     const userAndFollowings = user?.following?.map(
@@ -30,10 +31,8 @@ const Homepage = () => {
     // 1. iterate each post in Allposts.
     // 2. with the condition -> userAndFollowings having different user
     // 3. if user is found , show only those post having userAndFollowings
-    setFilterArray(updateArray)
+    setFilterArray(updateArray);
   }, [user]);
-
-  console.log("final filterArray", filterArray);
 
   return (
     <div className="homepage">

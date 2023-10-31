@@ -15,8 +15,14 @@ body, html {
   scroll-behavior: smooth;
 }
 
-.logout-btn {
-  width: 6vw;
-  margin-inline: 1em;
-  background-color: royalblue;
+button {
+  border: 1px solid rgb(97, 181, 233);
+    color: royalblue;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: white;
+}
+button:hover {
+  background-color: rgb(97, 181, 233);
+  color: white;
 }

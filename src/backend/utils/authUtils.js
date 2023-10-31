@@ -3,13 +3,15 @@ import dayjs from "dayjs";
 import jwt_decode from "jwt-decode";
 
 export const requiresAuth = function (request) {
+  debugger;
   const encodedToken = request.requestHeaders.authorization;
   const decodedToken = jwt_decode(
     encodedToken,
     "any"
   );
+  console.log("decodedToken", decodedToken);
   if (decodedToken) {
-    const user = this.db.users.findBy({ username: decodedToken.username });
+    const user = this.db.users.findBy({ _id: decodedToken._id });
     return user;
   }
   return new Response(

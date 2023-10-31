@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import character from "../../assets/login-character.jpg";
+import character from "../../assets/character.gif";
 
 // icons
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -118,8 +118,7 @@ const Login = () => {
             <button onClick={handleGuestMode} className="login-submit-btn">
               Guest Mode
             </button>
-
-            <ToastContainer />
+            <ToastContainer reverseOrder={false} autoClose={5000} />
           </form>
         </div>
       </div>

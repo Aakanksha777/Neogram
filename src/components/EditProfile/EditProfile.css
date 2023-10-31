@@ -1,15 +1,24 @@
 .edit-popup {
-    background-color: lightgray;
-    /* border: 2px solid yellowgreen; */
+    background-color: white;
     padding: 1.5em;
-    width: 38vw;
-    border-radius: 1vw;
+    border-radius: 20px;
 }
 .edit-profile-header {
     font-family: cursive, sans-serif;
     font-size: 22px;
-color: black;
+    color: black;
+}
 
+.edit-profile-container{
+    background-color: lightgray;
+    width: 400px;
+    padding: 1em;
+}
+
+.edit-input {
+    padding: 0.5em;
+    width: 100%;
+    margin-bottom: 0.5em;
 }
 .avatar-btn-container {
 display: flex;
@@ -21,7 +30,7 @@ color: black;
 
 .avatar-btn {
     background-color: rgb(124, 121, 121);
-    font-size: 0.8m;
+    font-size: 0.8em;
     padding: 0.5em;
     color: whitesmoke;
 }

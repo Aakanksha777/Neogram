@@ -35,7 +35,7 @@ export const HomepageAction = () => {
     console.log("latest action is working");
     const latestArray = getFollowedUser
       .slice()
-      .sort((a, b) => b.createdAt - a.createdAt);
+      .sort((a, b) => a.createdAt - b.createdAt);
     console.log("latestArray", [...latestArray]);
     setFilterArray([...latestArray]);
   };

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../Login/Login.css";
 import { useNavigate, Link } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import character from "../../assets/login-character.jpg";
+import character from "../../assets/character.gif";
 import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {

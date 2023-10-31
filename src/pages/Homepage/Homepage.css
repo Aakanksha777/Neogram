@@ -15,16 +15,6 @@
     text-align: left;
 }
 
-.post-like-bookmark {
-    margin-block: 0.5em;
-    margin-inline: auto;
-    padding: 0.5em;
-    font-size: 22px;
-    display: flex;
-    justify-content: space-between;
-    width: 75%;
-}
-
 .liked-text {
     font-style: italic;
     text-align: left;
@@ -43,7 +33,3 @@
 
 }
 
-.filter-text, .homepage-filter  {
-    color: whitesmoke;
-    background-color: transparent;
-}

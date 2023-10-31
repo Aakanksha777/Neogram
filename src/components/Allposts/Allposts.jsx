@@ -3,7 +3,7 @@ import {
   AiFillLike,
   AiOutlineLike,
   AiFillDelete,
-  AiFillEdit,
+  AiOutlineEdit,
 } from "react-icons/ai";
 import { BsFillBookmarkCheckFill, BsBookmarkDash } from "react-icons/bs";
 import { AuthContext } from "../../context/AuthContext";
@@ -11,6 +11,8 @@ import { PostContext } from "../../context/PostContext";
 import Modal from "../Modal/Modal";
 import PostForm from "../PostForm/PostForm";
 import "./Allposts.css";
+// import noPost from "../../assets/no_post.jpg";
+import noPostImg from "../../assets/no_post2.jpg";
 
 const Allposts = ({ allPosts }) => {
   const { user, setUser } = useContext(AuthContext);
@@ -97,10 +99,11 @@ const Allposts = ({ allPosts }) => {
       .catch((e) => console.log("Error:", e));
   };
 
+  // handle Delete
   const handleDelete = (item) => {
     const url = `/api/posts/${item._id}`;
     fetch(url, {
-      method: "delete",
+      method: "DELETE",
       headers: {
         "content-type": "application/json",
         authorization: user.token,
@@ -109,25 +112,55 @@ const Allposts = ({ allPosts }) => {
       .then((res) => res.json())
       .then((data) => {
         if (!data.errors) {
+          console.log("delete post api : ", data.posts);
           setAllPosts(data.posts);
         }
       })
       .catch((e) => console.log("Error is", e));
   };
 
+  // handle Edit
+  const handleEdit = (item) => {
+    setEditPostData(item);
+    setShowEditPost(!showEditPost);
+  };
+
+  console.log("allposts :", allPosts);
   return (
     <div>
       {allPosts.length > 0 ? (
         allPosts.map((ele) => (
           <div className="post-container" key={ele._id}>
+            {/* username - time */}
             <div className="user-time">
-              <b>
-                {ele.username} -{" "}
-                <span className="time">{ele.createdAt} username</span>
-              </b>
+              <p className="username">{ele.username}</p>
+              <p className="time username">
+                @{ele.username} || {""}
+                {ele.createdAt}
+              </p>
             </div>
-            <img src={ele.image} alt="posts" className="children-post-image" />
-            <p>{ele.content} content</p>
+
+            {/* center - img  */}
+            <div className="content-image">
+              <div className="post-image">
+                <img
+                  // src={ele.image}
+                  src={
+                    ele.image !== "" ? (
+                      ele.image
+                    ) : (
+                      <span className="default-img">noPost</span>
+                    )
+                  }
+                  alt="posts"
+                  className="children-post-image"
+                />
+              </div>
+              {/* content  */}
+              <div className="post-desc">
+                <p>{ele.content}</p>
+              </div>
+            </div>
 
             <div className="post-like-bookmark">
               {/* Check if the current user has already liked the post */}
@@ -152,17 +185,27 @@ const Allposts = ({ allPosts }) => {
               {ele.username === user.username && (
                 <>
                   <AiFillDelete onClick={() => handleDelete(ele)} />
-                  {/* <AiFillEdit onClick={() => handleEditModal(ele)} /> */}
+                </>
+              )}
+
+              {/* Edit  */}
+              {ele.username === user.username && (
+                <>
+                  <AiOutlineEdit onClick={() => handleEdit(ele)} />
                 </>
               )}
             </div>
+
+            {/* liked count text  */}
             <div className="liked-text">
-              Liked <AiOutlineLike /> by {ele.likes.likeCount} people
+              Liked by {ele.likes.likeCount} people
             </div>
           </div>
         ))
       ) : (
-        <h2>No posts</h2>
+        <div className="noPost-img">
+          <img src={noPostImg} alt="no post" className="noPost" />
+        </div>
       )}
       {showEditPost && (
         <Modal onClose={handleClose}>

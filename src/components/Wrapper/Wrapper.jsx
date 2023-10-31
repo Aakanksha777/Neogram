@@ -5,6 +5,7 @@ import { useLogout } from "../../Actions/useLogout";
 import Navbar from "../Navbar/Navbar";
 import "./Wrapper.css";
 import User from "../Sidebar/Sidebar";
+import socialLogo from "../../assets/social-logo-img.jpg";
 
 // context
 import { AuthContext } from "../../context/AuthContext";
@@ -17,10 +18,15 @@ const Wrapper = () => {
   //  If User.Token exists return Homepage , else navigate to Loginpage
   return user.token ? (
     <div className="page-layout">
-      <div className="logout-btn-container">
-        <button onClick={handleLogout} className="logout-btn">
-          Logout
-        </button>
+      <div className="login-upper-header">
+        <div className="social-logo">
+          <img src={socialLogo} alt="Logo" className="social-logo-img" />
+        </div>
+        <div className="social-logout-btn">
+          <button onClick={handleLogout} className="logout-btn">
+            Logout
+          </button>
+        </div>
       </div>
       {/* leftbar + main-section + rightbar */}
       <div className="wrapper-container">
