@@ -23,21 +23,20 @@ export const HomepageAction = () => {
   }, [allPosts, user]);
 
   const handleTrending = () => {
-    console.log("trending action is working");
-    const latestArray = getFollowedUser
-      .slice()
-      .sort((a, b) => b.likes.likeCount - a.likes.likeCount);
-    console.log("trendingArray", [...latestArray]);
-    setFilterArray([...latestArray]);
+    const trendingArry = getFollowedUser.sort(
+      (a, b) => b.likes.likeCount - a.likes.likeCount
+    );
+    console.log(trendingArry);
+    setFilterArray([...trendingArry]);
   };
 
   const handleLatestPosts = () => {
-    console.log("latest action is working");
-    const latestArray = getFollowedUser
-      .slice()
-      .sort((a, b) => a.createdAt - b.createdAt);
-    console.log("latestArray", [...latestArray]);
-    setFilterArray([...latestArray]);
+    const getFollowedUser = [...filterArray];
+    const latestArry = getFollowedUser.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    console.log(latestArry);
+    setFilterArray([...latestArry]);
   };
 
   return {

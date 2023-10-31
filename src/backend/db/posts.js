@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { formatDate , updatedDate} from "../utils/authUtils";
+import { updatedDate } from "../utils/authUtils";
 
 export const posts = [
   {
@@ -14,7 +14,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "adarsh",
-    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    createdAt: new Date("01-01-2022"),
     updatedAt: updatedDate(),
     comments: [
       {
@@ -70,7 +70,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate( new Date('01-01-2022'),  new Date('31-12-2023')),
+    createdAt: new Date("02-01-2022"),
     updatedAt: updatedDate(),
   },
   {
@@ -106,7 +106,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    createdAt: new Date("03-01-2022"),
     updatedAt: updatedDate(),
   },
   {
@@ -142,7 +142,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    createdAt: new Date("04-01-2022"),
     updatedAt: updatedDate(),
   },
   {
@@ -156,7 +156,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Aakanksha",
-    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    createdAt: new Date("07-01-2022"),
     updatedAt: updatedDate(),
   },
   {
@@ -170,7 +170,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Kajal",
-    createdAt: formatDate( new Date('2022-01-01'),  new Date('2023-12-31')),
+    createdAt: new Date("06-01-2022"),
     updatedAt: updatedDate(),
   },
   {
@@ -184,7 +184,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: "Surya",
-    createdAt: formatDate( new Date('2022-01-01'),  new Date('2022-12-31')),
+    createdAt: new Date("07-01-2022"),
     updatedAt: updatedDate(),
   },
 ];

@@ -1,6 +1,4 @@
 import { v4 as uuid } from "uuid";
-import { formatDate } from "../utils/authUtils";
-
 
 export const users = [
   {
@@ -9,11 +7,12 @@ export const users = [
     lastName: "bhumi",
     username: "bhumi",
     password: "123",
-    bio:"Hey, I am the developer of this app.",
-    github_Url:"https://github.com/Aakanksha777",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    image:"https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554256/socialmedia/avatars/jane-doe_il3cvx.webp"
+    bio: "Hey, I am the developer of this app.",
+    github_Url: "https://github.com/Aakanksha777",
+    createdAt: new Date(),
+    updatedAt: null,
+    image:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554256/socialmedia/avatars/jane-doe_il3cvx.webp",
   },
   {
     _id: uuid(),
@@ -21,11 +20,12 @@ export const users = [
     lastName: "Saini",
     username: "surya",
     password: "123",
-    bio:"Hey, I am the developer of this app.",
-    github_Url:"https://github.com/Aakanksha777",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    image:"https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+    bio: "Hey, I am the developer of this app.",
+    github_Url: "https://github.com/Aakanksha777",
+    createdAt: new Date(),
+    updatedAt: null,
+    image:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp",
   },
   {
     _id: uuid(),
@@ -33,11 +33,12 @@ export const users = [
     lastName: "Malothia",
     username: "Aakanksha",
     password: "123",
-    bio:"Hey, I am the developer of this app.",
-    github_Url:"https://github.com/Aakanksha777",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    image:"https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp"
+    bio: "Hey, I am the developer of this app.",
+    github_Url: "https://github.com/Aakanksha777",
+    createdAt: new Date(),
+    updatedAt: null,
+    image:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651473734/socialmedia/avatars/adarsh-balika_dct6gm.webp",
   },
   {
     _id: uuid(),
@@ -45,9 +46,10 @@ export const users = [
     lastName: "Gupta",
     username: "Kajal",
     password: "123",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    image:"https://res.cloudinary.com/dtrjdcrme/image/upload/v1651563581/socialmedia/avatars/carl-smith_mehw0u.webp"
+    createdAt: new Date(),
+    updatedAt: null,
+    image:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651563581/socialmedia/avatars/carl-smith_mehw0u.webp",
   },
   {
     _id: uuid(),
@@ -55,9 +57,9 @@ export const users = [
     lastName: "Vashisth",
     username: "rahul",
     password: "123",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-    image:"https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554207/socialmedia/avatars/john-doe_gbkuda.webp"
+    createdAt: new Date(),
+    updatedAt: null,
+    image:
+      "https://res.cloudinary.com/dtrjdcrme/image/upload/v1651554207/socialmedia/avatars/john-doe_gbkuda.webp",
   },
 ];
-

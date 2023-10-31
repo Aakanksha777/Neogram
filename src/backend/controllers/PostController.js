@@ -89,8 +89,8 @@ export const createPostHandler = function (schema, request) {
         dislikedBy: [],
       },
       username: user.username,
-      createdAt: currentDate(),
-      updatedAt: updatedDate(),
+      createdAt: new Date(),
+      updatedAt: null,
     };
     // without spread operator
     // post.image = postData.image;

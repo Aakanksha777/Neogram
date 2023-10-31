@@ -1,5 +1,5 @@
 import { Response } from "miragejs";
-import { formatDate, requiresAuth } from "../utils/authUtils";
+import { requiresAuth } from "../utils/authUtils";
 
 /**
  * All the routes related to user are present here.
@@ -42,7 +42,6 @@ export const getUserHandler = function (schema, request) {
  * */
 
 export const editUserHandler = function (schema, request) {
-  debugger;
   let user = requiresAuth.call(this, request);
   try {
     if (!user) {
@@ -57,7 +56,7 @@ export const editUserHandler = function (schema, request) {
       );
     }
     const { userData } = JSON.parse(request.requestBody);
-    user = { ...user, ...userData, updatedAt: formatDate() };
+    user = { ...user, ...userData, updatedAt: new Date() };
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { user });
   } catch (error) {
@@ -133,10 +132,7 @@ export const bookmarkPostHandler = function (schema, request) {
       );
     }
     user.bookmarks.push(post);
-    this.db.users.update(
-      { _id: user._id },
-      { ...user, updatedAt: formatDate() }
-    );
+    this.db.users.update({ _id: user._id }, { ...user, updatedAt: new Date() });
     return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
@@ -179,10 +175,7 @@ export const removePostFromBookmarkHandler = function (schema, request) {
       (currPost) => currPost._id !== postId
     );
     user = { ...user, bookmarks: filteredBookmarks };
-    this.db.users.update(
-      { _id: user._id },
-      { ...user, updatedAt: formatDate() }
-    );
+    this.db.users.update({ _id: user._id }, { ...user, updatedAt: new Date() });
     return new Response(200, {}, { bookmarks: user.bookmarks });
   } catch (error) {
     return new Response(
@@ -234,11 +227,11 @@ export const followUserHandler = function (schema, request) {
     };
     this.db.users.update(
       { _id: user._id },
-      { ...updatedUser, updatedAt: formatDate() }
+      { ...updatedUser, updatedAt: new Date() }
     );
     this.db.users.update(
       { _id: followUser._id },
-      { ...updatedFollowUser, updatedAt: formatDate() }
+      { ...updatedFollowUser, updatedAt: new Date() }
     );
     return new Response(
       200,
@@ -299,11 +292,11 @@ export const unfollowUserHandler = function (schema, request) {
     };
     this.db.users.update(
       { _id: user._id },
-      { ...updatedUser, updatedAt: formatDate() }
+      { ...updatedUser, updatedAt: new Date() }
     );
     this.db.users.update(
       { _id: followUser._id },
-      { ...updatedFollowUser, updatedAt: formatDate() }
+      { ...updatedFollowUser, updatedAt: new Date() }
     );
     return new Response(
       200,

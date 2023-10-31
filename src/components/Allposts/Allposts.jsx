@@ -27,9 +27,8 @@ const Allposts = ({ allPosts }) => {
     setShowEditPost(false);
   };
   const handleBookmark = (item, isBookmarked) => {
-    const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${
-      item._id
-    }`;
+    const url = `/api/users/${isBookmarked ? "remove-bookmark" : "bookmark"}/${item._id
+      }`;
 
     // Create the request payload based on whether it's bookmarking or removing bookmark
     const requestBody = isBookmarked
@@ -72,7 +71,6 @@ const Allposts = ({ allPosts }) => {
   // };
 
   const handleLike = (item, isAlreadyLiked) => {
-    debugger;
     console.log("item:", item);
     console.log("isAlreadyLiked:", isAlreadyLiked);
 
@@ -136,7 +134,7 @@ const Allposts = ({ allPosts }) => {
               <p className="username">{ele.username}</p>
               <p className="time username">
                 @{ele.username} || {""}
-                {ele.createdAt}
+                {new Date(ele.createdAt).toLocaleDateString()}
               </p>
             </div>
 

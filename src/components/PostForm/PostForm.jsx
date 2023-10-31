@@ -25,7 +25,6 @@ const PostForm = ({ postData, onClose }) => {
   // form submit function
   const handlePostSubmit = (e) => {
     e.preventDefault();
-    debugger;
     const url = `/api/posts${postData ? "/edit/" + postData._id : ""}`;
     fetch(url, {
       method: "post",
